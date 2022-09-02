@@ -8,6 +8,5 @@ export class CategoriaproductoEntity {
 
     @Column()
     nombre: string;
-    
-    //TODO: definir las relaciones (si aplica)
+
 }
