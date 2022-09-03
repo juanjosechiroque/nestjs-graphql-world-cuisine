@@ -44,9 +44,9 @@ describe('CiudadService', () => {
 
   it('findOne deberia retornar una ciudad por ID', async () => {
     const ciudadAlmacenada: CiudadEntity = listaCiudades[0];
-    const museum: CiudadEntity = await service.findOne(ciudadAlmacenada.codigo);
-    expect(museum).not.toBeNull();
-    expect(museum.nombre).toEqual(ciudadAlmacenada.nombre)
+    const ciudad: CiudadEntity = await service.findOne(ciudadAlmacenada.codigo);
+    expect(ciudad).not.toBeNull();
+    expect(ciudad.nombre).toEqual(ciudadAlmacenada.nombre)
   }); 
 
   it('findOne deberia arrojar una excepcion por una ciudad invalida', async () => {
@@ -79,7 +79,7 @@ describe('CiudadService', () => {
     expect(ciudadAlmacenada.nombre).toEqual(ciudad.nombre)
   });
 
-  it('update deberia arrojas una escepcion por una ciudad invialida', async () => {
+  it('update deberia arrojar una excepcion por una ciudad invalida', async () => {
     let ciudad: CiudadEntity = listaCiudades[0];
     ciudad = {
       ...ciudad, nombre: "New name"
@@ -95,7 +95,7 @@ describe('CiudadService', () => {
     expect(ciudadBorrado).toBeNull();
   });
 
-  it('delete deberia arrojas una excepcion por una ciudad invalida', async () => {
+  it('delete deberia arrojar una excepcion por una ciudad invalida', async () => {
     const ciudad: CiudadEntity = listaCiudades[0];
     await service.delete(ciudad.codigo);
     await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada")

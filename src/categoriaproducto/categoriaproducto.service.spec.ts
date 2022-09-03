@@ -79,7 +79,7 @@ describe('CategoriaproductoService', () => {
     expect(categoriaProductoAlmacenada.nombre).toEqual(categoriaProducto.nombre)
   });
 
-  it('update deberia arrojas una escepcion por una categoria de producto invialida', async () => {
+  it('update deberia arrojar una excepcion por una categoria de producto invalida', async () => {
     let categoriaProducto: CategoriaproductoEntity = listaCategoriasproducto[0];
     categoriaProducto = {
       ...categoriaProducto, nombre: "New name"
@@ -95,7 +95,7 @@ describe('CategoriaproductoService', () => {
     expect(categoriaProductoBorrado).toBeNull();
   });
 
-  it('delete deberia arrojas una excepcion por una categoria de producto invalida', async () => {
+  it('delete deberia arrojar una excepcion por una categoria de producto invalida', async () => {
     const categoriaProducto: CategoriaproductoEntity = listaCategoriasproducto[0];
     await service.delete(categoriaProducto.codigo);
     await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "La categoria de producto con el ID dado no fue encontrado")

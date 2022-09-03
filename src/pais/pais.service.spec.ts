@@ -36,7 +36,7 @@ describe('PaisService', () => {
     expect(service).toBeDefined();
   });
 
-  it('findAll deberia retornar todas las paises', async () => {
+  it('findAll deberia retornar todos los paises', async () => {
     const paises: PaisEntity[] = await service.findAll();
     expect(paises).not.toBeNull();
     expect(paises).toHaveLength(listaPaises.length);
@@ -44,16 +44,16 @@ describe('PaisService', () => {
 
   it('findOne deberia retornar un pais por ID', async () => {
     const paisAlmacenado: PaisEntity = listaPaises[0];
-    const museum: PaisEntity = await service.findOne(paisAlmacenado.codigo);
-    expect(museum).not.toBeNull();
-    expect(museum.nombre).toEqual(paisAlmacenado.nombre)
+    const pais: PaisEntity = await service.findOne(paisAlmacenado.codigo);
+    expect(pais).not.toBeNull();
+    expect(pais.nombre).toEqual(paisAlmacenado.nombre)
   }); 
 
   it('findOne deberia arrojar una excepcion por un pais invalido', async () => {
     await expect(() => service.findOne("0")).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado")
   });  
 
-  it('create deberia retornar una nueva pais', async () => {
+  it('create deberia retornar un nuevo pais', async () => {
     const pais: PaisEntity = {
       codigo: "",
       nombre: faker.lorem.sentence()
