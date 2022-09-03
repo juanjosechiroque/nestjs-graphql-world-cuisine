@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { RecetaEntity } from '../receta/receta.entity';
 
 @Entity()
 export class CulturaEntity {
@@ -13,4 +14,6 @@ export class CulturaEntity {
     descripcion: string;
     
     //TODO: definir las relaciones (si aplica)
+    @OneToMany(() => RecetaEntity, receta => receta.cultura)
+    recetas: RecetaEntity[];
 }
