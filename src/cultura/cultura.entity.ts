@@ -1,5 +1,8 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RecetaEntity } from '../receta/receta.entity';
+import { PaisEntity } from '../pais/pais.entity';
+import { RestauranteEntity } from '../restaurante/restaurante.entity';
+import { ProductoEntity } from "../producto/producto.entity";
 
 @Entity()
 export class CulturaEntity {
@@ -13,8 +16,31 @@ export class CulturaEntity {
     @Column()
     descripcion: string;
     
-    //@OneToMany(() => RecetaEntity, receta => receta.cultura)
-    //recetas: RecetaEntity[];
+    @OneToMany(() => RecetaEntity, receta => receta.cultura, { 
+        nullable: false, 
+        cascade: true
+    })
+    recetas: RecetaEntity[];
+    
+    @ManyToMany(() => PaisEntity, { 
+        nullable: true,
+        cascade: false
+    })
+    @JoinTable()
+    paises: PaisEntity[]
 
+    @ManyToMany(() => RestauranteEntity, { 
+        nullable: true,
+        cascade: false
+    })
+    @JoinTable()
+    restaurantes: RestauranteEntity[]
+
+    @ManyToMany(() => ProductoEntity, { 
+        nullable: true,
+        cascade: false
+    })
+    @JoinTable()
+    productos: ProductoEntity[]
 
 }

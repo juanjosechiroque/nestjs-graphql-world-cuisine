@@ -25,7 +25,6 @@ export class RecetaEntity {
     @Column()
     tipoReceta: string;
     
-    //TODO: definir las relaciones (si aplica)
-    //@ManyToOne(() => CulturaEntity, cultura => cultura.recetas)
-    //cultura: CulturaEntity;
+    @ManyToOne(() => CulturaEntity, cultura => cultura.recetas)
+    cultura: CulturaEntity;
 }
