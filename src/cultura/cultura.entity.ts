@@ -13,7 +13,8 @@ export class CulturaEntity {
     @Column()
     descripcion: string;
     
-    //TODO: definir las relaciones (si aplica)
-    @OneToMany(() => RecetaEntity, receta => receta.cultura)
-    recetas: RecetaEntity[];
+    //@OneToMany(() => RecetaEntity, receta => receta.cultura)
+    //recetas: RecetaEntity[];
+
+
 }
