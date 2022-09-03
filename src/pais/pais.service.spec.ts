@@ -27,7 +27,9 @@ describe('PaisService', () => {
     listaPaises = [];
     for(let i = 0; i < 5; i++){
         const pais: PaisEntity = await repository.save({
-        nombre: faker.lorem.sentence()})
+        nombre: faker.lorem.sentence(),
+        ciudades: []
+        })
         listaPaises.push(pais);
     }
   }  
@@ -56,7 +58,8 @@ describe('PaisService', () => {
   it('create deberia retornar un nuevo pais', async () => {
     const pais: PaisEntity = {
       codigo: "",
-      nombre: faker.lorem.sentence()
+      nombre: faker.lorem.sentence(),
+      ciudades: []
     }
 
     const nuevaPais: PaisEntity = await service.create(pais);

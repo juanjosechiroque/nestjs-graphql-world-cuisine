@@ -27,7 +27,9 @@ describe('CategoriaproductoService', () => {
     listaCategoriasproducto = [];
     for(let i = 0; i < 5; i++){
         const categoriaproducto: CategoriaproductoEntity = await repository.save({
-        nombre: faker.lorem.sentence()})
+        nombre: faker.lorem.sentence(),
+        productos: []
+      })
         listaCategoriasproducto.push(categoriaproducto);
     }
   }  
@@ -56,7 +58,8 @@ describe('CategoriaproductoService', () => {
   it('create deberia retornar una nueva categoria de producto', async () => {
     const categoriaproducto: CategoriaproductoEntity = {
       codigo: "",
-      nombre: faker.lorem.sentence()
+      nombre: faker.lorem.sentence(),
+      productos: []
     }
 
     const nuevaCategoriaProducto: CategoriaproductoEntity = await service.create(categoriaproducto);

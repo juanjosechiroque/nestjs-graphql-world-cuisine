@@ -29,7 +29,9 @@ describe('ProductoService', () => {
         const producto: ProductoEntity = await repository.save({
         nombre: faker.lorem.sentence(),
         descripcion: faker.lorem.paragraph(),
-        historia: faker.lorem.paragraph()})
+        historia: faker.lorem.paragraph(),
+        categoriaProducto: null
+        })
         listaProductos.push(producto);
     }
   }  
@@ -62,7 +64,8 @@ describe('ProductoService', () => {
       codigo: "",
       nombre: faker.lorem.sentence(),
       descripcion: faker.lorem.paragraph(),
-      historia: faker.lorem.paragraph()
+      historia: faker.lorem.paragraph(),
+      categoriaProducto: null
     }
 
     const nuevoProducto: ProductoEntity = await service.create(producto);
