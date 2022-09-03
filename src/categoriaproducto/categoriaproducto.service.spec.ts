@@ -27,7 +27,9 @@ describe('CategoriaproductoService', () => {
     listaCategoriasproducto = [];
     for(let i = 0; i < 5; i++){
         const categoriaproducto: CategoriaproductoEntity = await repository.save({
-        nombre: faker.lorem.sentence()})
+        nombre: faker.lorem.sentence(),
+        productos: []
+      })
         listaCategoriasproducto.push(categoriaproducto);
     }
   }  
@@ -56,7 +58,8 @@ describe('CategoriaproductoService', () => {
   it('create deberia retornar una nueva categoria de producto', async () => {
     const categoriaproducto: CategoriaproductoEntity = {
       codigo: "",
-      nombre: faker.lorem.sentence()
+      nombre: faker.lorem.sentence(),
+      productos: []
     }
 
     const nuevaCategoriaProducto: CategoriaproductoEntity = await service.create(categoriaproducto);
@@ -79,7 +82,7 @@ describe('CategoriaproductoService', () => {
     expect(categoriaProductoAlmacenada.nombre).toEqual(categoriaProducto.nombre)
   });
 
-  it('update deberia arrojas una escepcion por una categoria de producto invialida', async () => {
+  it('update deberia arrojar una excepcion por una categoria de producto invalida', async () => {
     let categoriaProducto: CategoriaproductoEntity = listaCategoriasproducto[0];
     categoriaProducto = {
       ...categoriaProducto, nombre: "New name"
@@ -95,7 +98,7 @@ describe('CategoriaproductoService', () => {
     expect(categoriaProductoBorrado).toBeNull();
   });
 
-  it('delete deberia arrojas una excepcion por una categoria de producto invalida', async () => {
+  it('delete deberia arrojar una excepcion por una categoria de producto invalida', async () => {
     const categoriaProducto: CategoriaproductoEntity = listaCategoriasproducto[0];
     await service.delete(categoriaProducto.codigo);
     await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "La categoria de producto con el ID dado no fue encontrado")

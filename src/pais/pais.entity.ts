@@ -1,5 +1,7 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm";
+import { CiudadEntity } from "../ciudad/ciudad.entity";
 import { CulturaEntity } from '../cultura/cultura.entity';
+
 
 @Entity()
 export class PaisEntity {
@@ -9,8 +11,11 @@ export class PaisEntity {
     
     @Column()
     nombre: string;
-    
-    //TODO: definir las relaciones (si aplica)
+
     @ManyToOne(() => CulturaEntity, cultura => cultura.paises)
     cultura: CulturaEntity;
+
+    @OneToMany(() => CiudadEntity, ciudad => ciudad.pais)
+    ciudades: CiudadEntity[];
+
 }

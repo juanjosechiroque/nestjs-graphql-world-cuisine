@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { PaisEntity } from "../pais/pais.entity";
 
 @Entity()
 export class CiudadEntity {
@@ -9,6 +10,7 @@ export class CiudadEntity {
     @Column()
     nombre: string;
     
-    //TODO: definir las relaciones (si aplica)
+    @ManyToOne(() => PaisEntity, pais => pais.ciudades)
+    pais: PaisEntity;    
 
 }
