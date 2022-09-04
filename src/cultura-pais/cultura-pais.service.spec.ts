@@ -61,7 +61,7 @@ describe('CulturaPaisService', () => {
       paises: null
     })
 
-    const result: CulturaEntity = await service.addPaisCategoria(newCultura.id, newPais.codigo);
+    const result: CulturaEntity = await service.addPaisCultura(newCultura.id, newPais.codigo);
     
     expect(result.paises).not.toBeNull();
     expect(result.paises[0].nombre).toBe(newPais.nombre)
@@ -74,7 +74,7 @@ describe('CulturaPaisService', () => {
       paises: null
     })
 
-    await expect(() => service.addPaisCategoria(newCultura.id, "0")).rejects.toHaveProperty("mensaje", "El país con el ID dado no fue encontrado");
+    await expect(() => service.addPaisCultura(newCultura.id, "0")).rejects.toHaveProperty("mensaje", "El país con el ID dado no fue encontrado");
   });
 
   it('addPaisCategoria deberia arrojar una excepcion por cultura invalido', async () => {
@@ -82,7 +82,7 @@ describe('CulturaPaisService', () => {
       nombre: faker.company.name() 
     });
 
-    await expect(() => service.addPaisCategoria("0", newPais.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrada");
+    await expect(() => service.addPaisCultura("0", newPais.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrada");
   });
 
   it('findPaisByCulturaIdPaisId deberia retornar una categoria de producto por producto', async () => {

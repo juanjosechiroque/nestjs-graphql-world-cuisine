@@ -16,7 +16,7 @@ export class CulturaPaisService {
         private readonly paisRepository: Repository<PaisEntity>
     ) { }
 
-    async addPaisCategoria(codigoCultura: string, codigoPais: string): Promise<CulturaEntity> {
+    async addPaisCultura(codigoCultura: string, codigoPais: string): Promise<CulturaEntity> {
         const pais: PaisEntity = await this.paisRepository.findOne({ where: { codigo: codigoPais } });
         if (!pais)
             throw new BusinessLogicException("El país con el ID dado no fue encontrado", BusinessError.NOT_FOUND);
