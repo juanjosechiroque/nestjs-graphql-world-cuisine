@@ -75,7 +75,8 @@ describe('RestauranteService', () => {
       descripcion: faker.lorem.paragraph(),
       direccion: faker.address.direction(),
       telefono: faker.phone.number(),
-      foto: faker.image.imageUrl()
+      foto: faker.image.imageUrl(),
+      ciudad: null
   }
 
     const nuevoRestaurante: RestauranteEntity = await service.create(restaurante);

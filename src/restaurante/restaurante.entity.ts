@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { CiudadEntity } from "../ciudad/ciudad.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class RestauranteEntity {
@@ -26,7 +27,9 @@ export class RestauranteEntity {
 
     @Column()
     foto: string;
-    
-    //TODO: definir las relaciones (si aplica)
+
+    @OneToOne(() => CiudadEntity)
+    @JoinColumn()
+    ciudad: CiudadEntity
 
 }
