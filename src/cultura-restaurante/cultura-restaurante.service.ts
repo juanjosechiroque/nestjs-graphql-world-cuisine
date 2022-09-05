@@ -50,6 +50,50 @@ export class CulturaRestauranteService {
         return culturaRestaurante;
     }
 
+    async findRestaurantesByCulturaId(codigoCultura: string): Promise<RestauranteEntity[]> {
+        const cultura: CulturaEntity = await this.culturaRepository.findOne({ where: { id: codigoCultura }, relations: ["restaurantes"] });
+        
+        if (!cultura)
+            throw new BusinessLogicException("La cultura gastronómica con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+
+        return cultura.restaurantes;
+    }
+
+    async associateRestaurantesCultura(codigoCultura: string, restaurantes: RestauranteEntity[]): Promise<CulturaEntity> {
+        const cultura: CulturaEntity = await this.culturaRepository.findOne({where: {id: codigoCultura}, relations: ["restaurantes"]});
+    
+        if (!cultura)
+          throw new BusinessLogicException("La cultura gastronómica con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+    
+        for (let i = 0; i < restaurantes.length; i++) {
+          const restaurante: RestauranteEntity = await this.restauranteRepository.findOne({where: {codigo: restaurantes[i].codigo}});
+          if (!restaurante)
+            throw new BusinessLogicException("El restaurantes con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+        }
+    
+        cultura.restaurantes = restaurantes;
+        return await this.culturaRepository.save(cultura);
+    }
+
+
+    async deleteRestauranteCultura(codigoCultura: string, codigoRestaurante: string){
+        const restaurante: RestauranteEntity = await this.restauranteRepository.findOne({where: {codigo: codigoRestaurante}});
+        if (!restaurante)
+          throw new BusinessLogicException("El restaurante con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+    
+        const cultura: CulturaEntity = await this.culturaRepository.findOne({where: {id: codigoCultura}, relations: ["restaurantes"]});
+        if (!cultura)
+          throw new BusinessLogicException("La cultura gastronómica con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+    
+        const culturaRestaurante: RestauranteEntity = cultura.restaurantes.find(e => e.codigo === restaurante.codigo);
+    
+        if (!culturaRestaurante)
+            throw new BusinessLogicException("El restaurante con el ID dado no se encuentra asociado a la cultura gastronómica", BusinessError.PRECONDITION_FAILED)
+ 
+        cultura.restaurantes = cultura.restaurantes.filter(e => e.codigo !== codigoRestaurante);
+        await this.culturaRepository.save(cultura);
+    } 
+
 
 
 }

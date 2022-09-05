@@ -140,4 +140,86 @@ describe('CulturaRestauranteService', () => {
   });
 
 
+  it('findRestaurantesByCulturaId deberia retornar los restaurantes de una cultura', async () => {
+    const restaurantes: RestauranteEntity[] = await service.findRestaurantesByCulturaId(cultura.id);
+    expect(restaurantes).not.toBeNull();
+    expect(restaurantes.length).toBe(5);
+  });
+
+
+  it('findRestaurantesByCulturaId deberia lanzar una execepcion por una cultura invalida', async () => {
+    await expect(()=> service.findRestaurantesByCulturaId("0")).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+  });
+
+
+  it('associateRestaurantesCultura deberia actualizar los restaurantes para una cultura', async () => {
+    const newRestaurante: RestauranteEntity = restauranteList[0];
+
+    const updatedCultura: CulturaEntity = await service.associateRestaurantesCultura(cultura.id, [newRestaurante]);
+    expect(updatedCultura).not.toBeNull();
+    expect(updatedCultura.restaurantes).not.toBeNull();
+    expect(updatedCultura.restaurantes[0].nombre).toBe(newRestaurante.nombre);
+  });
+
+  it('associateRestaurantesCultura deberia arrojar una excepcion por una cultura invalida', async () => {
+    const restaurante: RestauranteEntity = await restauranteRepository.save({
+        nombre: faker.lorem.sentence(),
+        estrellasMichelin: faker.datatype.number(),
+        fechaConsecusion: faker.date.birthdate(),
+        descripcion: faker.lorem.paragraph(),
+        direccion: faker.address.direction(),
+        telefono: faker.phone.number(),
+        foto: faker.image.imageUrl()
+    });
+
+    await expect(() => service.associateRestaurantesCultura("0", [restaurante])).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+  });
+
+  it('associateRestaurantesCultura deberia arrojar una escepcion por un restaurante invalido', async () => {
+    const newRestaurante: RestauranteEntity = restauranteList[0];
+    newRestaurante.codigo = "0";
+
+    await expect(() => service.associateRestaurantesCultura(cultura.id, [newRestaurante])).rejects.toHaveProperty("mensaje", "El restaurantes con el ID dado no fue encontrado");
+  });
+
+  it('deleteRestauranteCultura deberia eliminar un restaurante de una cultura', async () => {
+    const restaurante: RestauranteEntity = restauranteList[0];
+
+    await service.deleteRestauranteCultura(cultura.id, restaurante.codigo);
+
+    const storedCultura: CulturaEntity = await culturaRepository.findOne({ where: { id: cultura.id }, relations: ["restaurantes"] });
+    const deletedRestaurante: RestauranteEntity = storedCultura.restaurantes.find(a => a.codigo === restaurante.codigo);
+
+    expect(deletedRestaurante).toBeUndefined();
+
+  });
+
+  it('deleteRestauranteCultura deberia lanzar una excepcion por un restaurante invalido', async () => {
+    await expect(() => service.deleteRestauranteCultura(cultura.id, "0")).rejects.toHaveProperty("mensaje", "El restaurante con el ID dado no fue encontrado");
+  });
+
+
+  it('deleteRestauranteCultura deberia lanzar una excepcion por una cultura invalida', async () => {
+    const restaurante: RestauranteEntity = restauranteList[0];
+    await expect(() => service.deleteRestauranteCultura("0", restaurante.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+  });
+
+  it('deleteRestauranteCultura deberia lanzar una excepcion por un restaurante no asociado', async () => {
+    const restaurante: RestauranteEntity = await restauranteRepository.save({
+        nombre: faker.lorem.sentence(),
+        estrellasMichelin: faker.datatype.number(),
+        fechaConsecusion: faker.date.birthdate(),
+        descripcion: faker.lorem.paragraph(),
+        direccion: faker.address.direction(),
+        telefono: faker.phone.number(),
+        foto: faker.image.imageUrl()
+    });
+
+    await expect(() => service.deleteRestauranteCultura(cultura.id, restaurante.codigo)).rejects.toHaveProperty("mensaje", "El restaurante con el ID dado no se encuentra asociado a la cultura gastronómica");
+  });
+
+
+
+
+
 });
