@@ -36,7 +36,7 @@ import { RestauranteEntity } from './restaurante/restaurante.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'admin',
+      password: 'postgres',
       database: 'cultura',
       entities: [CategoriaproductoEntity, CiudadEntity, CulturaEntity, PaisEntity, ProductoEntity, RecetaEntity, RestauranteEntity],
       dropSchema: true,
