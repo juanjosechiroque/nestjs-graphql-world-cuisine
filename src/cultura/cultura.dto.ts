@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-export class ProductoDto {
+export class CulturaDto {
 
-    codigo: string;
+    id: string;
 
     @IsString()
     @IsNotEmpty()
@@ -12,8 +12,4 @@ export class ProductoDto {
     @IsNotEmpty()
     descripcion: string;
     
-    @IsString()
-    @IsNotEmpty()
-    historia: string;
-
 }
