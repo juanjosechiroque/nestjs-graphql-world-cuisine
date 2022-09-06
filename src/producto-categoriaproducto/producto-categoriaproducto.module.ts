@@ -3,9 +3,11 @@ import { ProductoCategoriaproductoService } from './producto-categoriaproducto.s
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductoEntity } from '../producto/producto.entity';
 import { CategoriaproductoEntity } from '../categoriaproducto/categoriaproducto.entity';
+import { ProductoCategoriaproductoController } from './producto-categoriaproducto.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductoEntity, CategoriaproductoEntity])],
-    providers: [ProductoCategoriaproductoService]
+    providers: [ProductoCategoriaproductoService],
+    controllers: [ProductoCategoriaproductoController]
 })
 export class ProductoCategoriaproductoModule {}
