@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "401162b9-a814-455c-b32e-7835120b6143",
+		"name": "CategoriaProducto",
+		"description": "Documentación para el recurso Categoría de Producto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22977088"
+	},
+	"item": [
+		{
+			"name": "Agregar una categoría de producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"categoriaproducto_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Codigo de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Condimento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto"
+					]
+				},
+				"description": "Esta solicitud crea una nueva categoría de producto. El API retorna el recurso creado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "Agregar una categoría de producto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Condimento\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\r\n  \"nombre\": \"Condimento\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las categorías de producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Numero de categorias de producto > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Codigo de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto"
+					]
+				},
+				"description": "Esta solicitud obtiene un listado de las categorías de producto existentes."
+			},
+			"response": [
+				{
+					"name": "Obtener todas las categorías de producto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\n        \"nombre\": \"Condimento\"\n    },\n    {\n        \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac129517\",\n        \"nombre\": \"Aderezo\"\n    },\n    {\n        \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac129522\",\n        \"nombre\": \"Especia\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una categoría de producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto/{{categoriaproducto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto",
+						"{{categoriaproducto_id}}"
+					]
+				},
+				"description": "Esta solicitud obtiene una categoría de producto asociado a un ID existente."
+			},
+			"response": [
+				{
+					"name": "Obtener una categoría de producto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto/{{categoriaproducto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto",
+								"{{categoriaproducto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\n    \"nombre\": \"Condimento\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una categoría de producto inválida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud obtiene una categoría de producto asociado a un ID inválido."
+			},
+			"response": [
+				{
+					"name": "Obtener una categoría de producto inválida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"La categoria de producto con el ID dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una categoría de producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Condimentos y salsas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto/{{categoriaproducto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto",
+						"{{categoriaproducto_id}}"
+					]
+				},
+				"description": "Esta solicitud permite actualizar una categoría de producto asociada a un ID existente. El API retorna el recurso actualizado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "Actualizar una categoría de producto",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Condimentos y salsas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto/{{categoriaproducto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto",
+								"{{categoriaproducto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\n    \"nombre\": \"Condimentos y salsas\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una categoría de producto inválida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Condimentos y salsas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud permite actualizar una categoría de producto asociada a un ID no válido. El API retorna un código de error con un mensaje asociado."
+			},
+			"response": [
+				{
+					"name": "Actualizar una categoría de producto inválida",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Condimentos y salsas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"La categoria de producto con el ID dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una categoría de producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto/{{categoriaproducto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto",
+						"{{categoriaproducto_id}}"
+					]
+				},
+				"description": "Esta solicitud elimina una categoría de producto asociada a un ID existente."
+			},
+			"response": [
+				{
+					"name": "Borrar una categoría de producto",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto/{{categoriaproducto_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto",
+								"{{categoriaproducto_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una categoría de producto inválida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/categoriasproducto/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"categoriasproducto",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud elimina una categoría de producto asociada a un ID no válido. El API retorna un código de error con un mensaje asociado."
+			},
+			"response": [
+				{
+					"name": "Borrar una categoría de producto inválida",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoriasproducto/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoriasproducto",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La categoria de producto con el ID dado no fue encontrado\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "categoriaproducto_id",
+			"value": "fa8dde52-eb62-4460-8124-19e810c722e4",
+			"type": "string"
+		}
+	]
+}
