@@ -18,9 +18,9 @@ export class CategoriaproductoService {
 
     async findOne(codigo: string): Promise<CategoriaproductoEntity> {
         const categoriaproducto: CategoriaproductoEntity = await this.categoriaproductoRepository.findOne({where: {codigo} } );
-        if (!categoriaproducto)
-          throw new BusinessLogicException("La categoria de producto con el ID dado no fue encontrado", BusinessError.NOT_FOUND);
-    
+        if (!categoriaproducto) {
+            throw new BusinessLogicException("La categoria de producto con el ID dado no fue encontrado", BusinessError.NOT_FOUND);
+        }
         return categoriaproducto;
     }    
 

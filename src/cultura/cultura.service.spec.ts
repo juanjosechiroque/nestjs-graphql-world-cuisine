@@ -51,7 +51,7 @@ describe('CulturaService', () => {
   }); 
 
   it('findOne deberia arrojar una excepcion por una cultura invalida', async () => {
-    await expect(() => service.findOne("0")).rejects.toHaveProperty("mensaje", "La cultura gastronomica con el ID dado no fue encontrada")
+    await expect(() => service.findOne("0")).rejects.toHaveProperty("message", "La cultura gastronomica con el ID dado no fue encontrada")
   });  
 
   it('create deberia retornar una nueva cultura', async () => {
@@ -93,7 +93,7 @@ describe('CulturaService', () => {
     cultura = {
       ...cultura, nombre: "New name"
     }
-    await expect(() => service.update("0", cultura)).rejects.toHaveProperty("mensaje", "La cultura gastronomica con el ID dado no fue encontrada")
+    await expect(() => service.update("0", cultura)).rejects.toHaveProperty("message", "La cultura gastronomica con el ID dado no fue encontrada")
   });  
 
   it('delete deberia eliminar una cultura', async () => {
@@ -107,7 +107,7 @@ describe('CulturaService', () => {
   it('delete deberia arrojar una excepcion por una cultura invalida', async () => {
     const cultura: CulturaEntity = listaCulturas[0];
     await service.delete(cultura.id);
-    await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "La cultura gastronomica con el ID dado no fue encontrada")
+    await expect(() => service.delete("0")).rejects.toHaveProperty("message", "La cultura gastronomica con el ID dado no fue encontrada")
   });
 
 });

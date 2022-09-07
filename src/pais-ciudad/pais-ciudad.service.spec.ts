@@ -78,7 +78,7 @@ describe('PaisCiudadService', () => {
       ciudades: null
     })
 
-    await expect(() => service.addCiudadPais(newPais.codigo, "0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada");
+    await expect(() => service.addCiudadPais(newPais.codigo, "0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada");
   });
 
   it('addCiudadPais deberia arrojar una excepcion por pais invalido', async () => {
@@ -92,7 +92,7 @@ describe('PaisCiudadService', () => {
       pais: pais
     });
 
-    await expect(() => service.addCiudadPais("0", newCiudad.codigo)).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado");
+    await expect(() => service.addCiudadPais("0", newCiudad.codigo)).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado");
   });
 
   it('findCiudadByPaisIdCiudadId deberia retornar un pais de ciudad', async () => {
@@ -102,12 +102,12 @@ describe('PaisCiudadService', () => {
   });
 
   it('findCiudadByPaisIdCiudadId deberia arrojar una excepcion por un pais invalido', async () => {
-    await expect(() => service.findCiudadByPaisIdCiudadId(pais.codigo, "0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada");
+    await expect(() => service.findCiudadByPaisIdCiudadId(pais.codigo, "0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada");
   });
 
   it('findCiudadByPaisIdCiudadId deberia arrojar una excepcion por una pais invalido', async () => {
     const ciudad: CiudadEntity = ciudadesList[0];
-    await expect(() => service.findCiudadByPaisIdCiudadId("0", ciudad.codigo)).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado");
+    await expect(() => service.findCiudadByPaisIdCiudadId("0", ciudad.codigo)).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado");
   });
 
   it('findCiudadByPaisIdCiudadId deberia arrojar una excepcion por una ciudad no asociada a pais', async () => {
@@ -121,7 +121,7 @@ describe('PaisCiudadService', () => {
       pais: newPais
     });
 
-    await expect(() => service.findCiudadByPaisIdCiudadId(pais.codigo, newCiudad.codigo)).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no se encuentra asociada al pais");
+    await expect(() => service.findCiudadByPaisIdCiudadId(pais.codigo, newCiudad.codigo)).rejects.toHaveProperty("message", "La ciudad con el ID dado no se encuentra asociada al pais");
   });
 
   it('findCiudadesByPaisId deberia retornar ciudades por pais', async () => {
@@ -130,7 +130,7 @@ describe('PaisCiudadService', () => {
   });
 
   it('findCiudadesByPaisId deberia arrojar una excepcion por una pais invalida', async () => {
-    await expect(() => service.findCiudadesByPaisId("0")).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado");
+    await expect(() => service.findCiudadesByPaisId("0")).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado");
   });
 
   it('associateCiudadesPais deberia actualizar la ciudad para una pais', async () => {
@@ -153,14 +153,14 @@ describe('PaisCiudadService', () => {
       pais: pais
     });
 
-    await expect(() => service.associateCiudadesPais("0", [newCiudad])).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado");
+    await expect(() => service.associateCiudadesPais("0", [newCiudad])).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado");
   });
 
   it('associateCiudadesPais deberia arrojar una escepcion por una ciudad invalida', async () => {
     const newCiudad: CiudadEntity = ciudadesList[0];
     newCiudad.codigo = "0";
 
-    await expect(() => service.associateCiudadesPais(pais.codigo, [newCiudad])).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada");
+    await expect(() => service.associateCiudadesPais(pais.codigo, [newCiudad])).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada");
   });
 
   it('deleteCiudadPais deberia eliminar una ciudad de una pais', async () => {
@@ -176,12 +176,12 @@ describe('PaisCiudadService', () => {
   });
 
   it('deleteCiudadPais deberia retornar una excepcion por una ciudad invalida', async () => {
-    await expect(() => service.deleteCiudadPais(pais.codigo, "0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada");
+    await expect(() => service.deleteCiudadPais(pais.codigo, "0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada");
   });
 
   it('deleteCiudadPais deberia arrojar una excepcion por una pais invalido', async () => {
     const ciudad: CiudadEntity = ciudadesList[0];
-    await expect(() => service.deleteCiudadPais("0", ciudad.codigo)).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado");
+    await expect(() => service.deleteCiudadPais("0", ciudad.codigo)).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado");
   });
 
   it('deleteCiudadPais deberia arrojar una excepcion por una ciudad no asociada', async () => {
@@ -201,7 +201,7 @@ describe('PaisCiudadService', () => {
       pais: newPais
     });
 
-    await expect(() => service.deleteCiudadPais(pais.codigo, newCiudad.codigo)).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no se encuentra asociada al pais");
+    await expect(() => service.deleteCiudadPais(pais.codigo, newCiudad.codigo)).rejects.toHaveProperty("message", "La ciudad con el ID dado no se encuentra asociada al pais");
   });
 
 

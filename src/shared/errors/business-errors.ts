@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-export function BusinessLogicException(mensaje: string, tipo: number) {
-    this.mensaje = mensaje;
-    this.tipo = tipo;
+export function BusinessLogicException(message: string, type: number) {
+    this.message = message;
+    this.type = type;
   }
    
   export enum BusinessError {

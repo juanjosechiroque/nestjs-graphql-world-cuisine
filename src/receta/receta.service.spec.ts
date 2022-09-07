@@ -62,7 +62,7 @@ describe('RecetaService', () => {
   }); 
 
   it('findOne deberia arrojar una excepcion por una receta invalida', async () => {
-    await expect(() => service.findOne("0")).rejects.toHaveProperty("mensaje", "La receta con el ID dado no fue encontrada")
+    await expect(() => service.findOne("0")).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrada")
   });  
 
   /*it('create deberia retornar una nueva receta', async () => {
@@ -120,7 +120,7 @@ describe('RecetaService', () => {
     receta = {
       ...receta, nombre: "New name"
     }
-    await expect(() => service.update("0", receta)).rejects.toHaveProperty("mensaje", "La receta con el ID dado no fue encontrada")
+    await expect(() => service.update("0", receta)).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrada")
   });  
 
   it('delete deberia eliminar una receta', async () => {
@@ -134,7 +134,7 @@ describe('RecetaService', () => {
   it('delete deberia arrojar una excepcion por una receta invalida', async () => {
     const receta: RecetaEntity = listaRecetas[0];
     await service.delete(receta.codigo);
-    await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "La receta con el ID dado no fue encontrada")
+    await expect(() => service.delete("0")).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrada")
   });
 
 });

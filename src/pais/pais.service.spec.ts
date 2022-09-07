@@ -52,7 +52,7 @@ describe('PaisService', () => {
   }); 
 
   it('findOne deberia arrojar una excepcion por un pais invalido', async () => {
-    await expect(() => service.findOne("0")).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado")
+    await expect(() => service.findOne("0")).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado")
   });  
 
   it('create deberia retornar un nuevo pais', async () => {
@@ -87,7 +87,7 @@ describe('PaisService', () => {
     pais = {
       ...pais, nombre: "New name"
     }
-    await expect(() => service.update("0", pais)).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado")
+    await expect(() => service.update("0", pais)).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado")
   });  
 
   it('delete deberia eliminar un pais', async () => {
@@ -101,7 +101,7 @@ describe('PaisService', () => {
   it('delete deberia arrojar una excepcion por un pais invalido', async () => {
     const pais: PaisEntity = listaPaises[0];
     await service.delete(pais.codigo);
-    await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "El pais con el ID dado no fue encontrado")
+    await expect(() => service.delete("0")).rejects.toHaveProperty("message", "El pais con el ID dado no fue encontrado")
   });
 
 });

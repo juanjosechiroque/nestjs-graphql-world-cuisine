@@ -52,7 +52,7 @@ describe('CiudadService', () => {
   }); 
 
   it('findOne deberia arrojar una excepcion por una ciudad invalida', async () => {
-    await expect(() => service.findOne("0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada")
+    await expect(() => service.findOne("0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada")
   });  
 
   it('create deberia retornar una nueva ciudad', async () => {
@@ -87,7 +87,7 @@ describe('CiudadService', () => {
     ciudad = {
       ...ciudad, nombre: "New name"
     }
-    await expect(() => service.update("0", ciudad)).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada")
+    await expect(() => service.update("0", ciudad)).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada")
   });  
 
   it('delete deberia eliminar una ciudad', async () => {
@@ -101,7 +101,7 @@ describe('CiudadService', () => {
   it('delete deberia arrojar una excepcion por una ciudad invalida', async () => {
     const ciudad: CiudadEntity = listaCiudades[0];
     await service.delete(ciudad.codigo);
-    await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada")
+    await expect(() => service.delete("0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada")
   });
 
 });

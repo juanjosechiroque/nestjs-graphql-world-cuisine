@@ -91,7 +91,7 @@ describe('RestauranteCiudadService', () => {
         foto: faker.image.imageUrl()
     });
 
-    await expect(() => service.addCiudadRestaurante(newRestaurante.codigo, "0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada");
+    await expect(() => service.addCiudadRestaurante(newRestaurante.codigo, "0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada");
   });
 
 
@@ -100,7 +100,7 @@ describe('RestauranteCiudadService', () => {
         nombre: faker.lorem.sentence()
     });
 
-    await expect(() => service.addCiudadRestaurante("0", newCiudad.codigo)).rejects.toHaveProperty("mensaje", "El restaurante con el ID dado no fue encontrado");
+    await expect(() => service.addCiudadRestaurante("0", newCiudad.codigo)).rejects.toHaveProperty("message", "El restaurante con el ID dado no fue encontrado");
   });
 
   it('findCiudadByRestauranteIdCiudadId deberia retornar la ciudad de un restaurant', async () => {
@@ -112,13 +112,13 @@ describe('RestauranteCiudadService', () => {
 
 
   it('findCiudadByRestauranteIdCiudadId deberia lanzar una excepcion por una ciudad invalida', async () => {
-    await expect(()=> service.findCiudadByRestauranteIdCiudadId(restaurante.codigo, "0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada"); 
+    await expect(()=> service.findCiudadByRestauranteIdCiudadId(restaurante.codigo, "0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada"); 
   });
 
 
   it('findCiudadByRestauranteIdCiudadId deberia lanzar una excepcion por un restaurante invalido', async () => {
     const ciudad: CiudadEntity = ciudadList[0]; 
-    await expect(()=> service.findCiudadByRestauranteIdCiudadId("0", ciudad.codigo)).rejects.toHaveProperty("mensaje", "El restaurante con el ID dado no fue encontrado"); 
+    await expect(()=> service.findCiudadByRestauranteIdCiudadId("0", ciudad.codigo)).rejects.toHaveProperty("message", "El restaurante con el ID dado no fue encontrado"); 
   });
 
 
@@ -127,7 +127,7 @@ describe('RestauranteCiudadService', () => {
         nombre: faker.lorem.sentence()
     });
 
-    await expect(()=> service.findCiudadByRestauranteIdCiudadId(restaurante.codigo, newCiudad.codigo)).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no esta asociada al restaurante"); 
+    await expect(()=> service.findCiudadByRestauranteIdCiudadId(restaurante.codigo, newCiudad.codigo)).rejects.toHaveProperty("message", "La ciudad con el ID dado no esta asociada al restaurante"); 
   });
 
 
@@ -138,7 +138,7 @@ describe('RestauranteCiudadService', () => {
 
 
   it('findCiudadByRestauranteId deberia lanzar una excepcion por un restaurante invalido', async () => {
-    await expect(()=> service.findCiudadByRestauranteId("0")).rejects.toHaveProperty("mensaje", "El restaurante con el ID dado no fue encontrado"); 
+    await expect(()=> service.findCiudadByRestauranteId("0")).rejects.toHaveProperty("message", "El restaurante con el ID dado no fue encontrado"); 
   });
 
 
@@ -155,7 +155,7 @@ describe('RestauranteCiudadService', () => {
         nombre: faker.lorem.sentence()
     });
 
-    await expect(()=> service.associateCiudadRestaurante("0", newCiudad)).rejects.toHaveProperty("mensaje", "El restaurante con el ID dado no fue encontrado"); 
+    await expect(()=> service.associateCiudadRestaurante("0", newCiudad)).rejects.toHaveProperty("message", "El restaurante con el ID dado no fue encontrado"); 
   });
 
 
@@ -163,7 +163,7 @@ describe('RestauranteCiudadService', () => {
     const newCiudad: CiudadEntity = ciudadList[0];
     newCiudad.codigo = "0";
 
-    await expect(()=> service.associateCiudadRestaurante(restaurante.codigo, newCiudad)).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada"); 
+    await expect(()=> service.associateCiudadRestaurante(restaurante.codigo, newCiudad)).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada"); 
   });
 
 
@@ -181,13 +181,13 @@ describe('RestauranteCiudadService', () => {
 
 
   it('deleteCiudadRestaurante deberia retornar una excepcion por una ciudad invalida', async () => {
-    await expect(()=> service.deleteCiudadRestaurante(restaurante.codigo, "0")).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no fue encontrada"); 
+    await expect(()=> service.deleteCiudadRestaurante(restaurante.codigo, "0")).rejects.toHaveProperty("message", "La ciudad con el ID dado no fue encontrada"); 
   });
 
 
   it('deleteCiudadRestaurante deberia arrojar una excepcion por un restaurante invalido', async () => {
     const ciudad: CiudadEntity = ciudadList[0]; 
-    await expect(()=> service.deleteCiudadRestaurante("0", ciudad.codigo)).rejects.toHaveProperty("mensaje", "El restaurante con el ID dado no fue encontrado"); 
+    await expect(()=> service.deleteCiudadRestaurante("0", ciudad.codigo)).rejects.toHaveProperty("message", "El restaurante con el ID dado no fue encontrado"); 
   });
 
 
@@ -196,7 +196,7 @@ describe('RestauranteCiudadService', () => {
         nombre: faker.lorem.sentence()
     });
 
-    await expect(()=> service.deleteCiudadRestaurante(restaurante.codigo, newCiudad.codigo)).rejects.toHaveProperty("mensaje", "La ciudad con el ID dado no esta asociada al restaurante"); 
+    await expect(()=> service.deleteCiudadRestaurante(restaurante.codigo, newCiudad.codigo)).rejects.toHaveProperty("message", "La ciudad con el ID dado no esta asociada al restaurante"); 
   }); 
   
 

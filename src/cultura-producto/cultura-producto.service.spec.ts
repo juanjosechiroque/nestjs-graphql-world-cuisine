@@ -78,7 +78,7 @@ describe('CulturaProductoService', () => {
       productos: null
     })
 
-    await expect(() => service.addProductoCultura(newCultura.id, "0")).rejects.toHaveProperty("mensaje", "El producto con el ID dado no fue encontrado");
+    await expect(() => service.addProductoCultura(newCultura.id, "0")).rejects.toHaveProperty("message", "El producto con el ID dado no fue encontrado");
   });
 
   it('addProductoCultura deberia arrojar una excepcion por cultura invalido', async () => {
@@ -88,7 +88,7 @@ describe('CulturaProductoService', () => {
       historia: faker.lorem.paragraph()
     });
 
-    await expect(() => service.addProductoCultura("0", newProducto.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrada");
+    await expect(() => service.addProductoCultura("0", newProducto.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrada");
   });
 
   it('findProductoByCulturaIdProductoId deberia retornar un producto por cultura', async () => {
@@ -99,12 +99,12 @@ describe('CulturaProductoService', () => {
   });
 
   it('findProductoByCulturaIdProductoId deberia arrojar una excepcion por un producto invalida', async () => {
-    await expect(() => service.findProductoByCulturaIdProductoId(cultura.id, "0")).rejects.toHaveProperty("mensaje", "El producto con el ID dado no fue encontrado");
+    await expect(() => service.findProductoByCulturaIdProductoId(cultura.id, "0")).rejects.toHaveProperty("message", "El producto con el ID dado no fue encontrado");
   });
 
   it('findProductoByCulturaIdProductoId deberia arrojar una excepcion por una cultura invalido', async () => {
     const pais: ProductoEntity = productosList[0];
-    await expect(() => service.findProductoByCulturaIdProductoId("0", pais.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.findProductoByCulturaIdProductoId("0", pais.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('findProductoByCulturaIdProductoId deberia arrojar una excepcion por un producto no asociada a cultura', async () => {
@@ -114,7 +114,7 @@ describe('CulturaProductoService', () => {
       historia: faker.lorem.paragraph()
     });
 
-    await expect(() => service.findProductoByCulturaIdProductoId(cultura.id, newProducto.codigo)).rejects.toHaveProperty("mensaje", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
+    await expect(() => service.findProductoByCulturaIdProductoId(cultura.id, newProducto.codigo)).rejects.toHaveProperty("message", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
   });
 
   it('findProductoByCulturaId deberia retornar productos por cultura', async () => {
@@ -123,7 +123,7 @@ describe('CulturaProductoService', () => {
   });
 
   it('findProductoByCulturaId deberia arrojar una excepcion por una cultura invalida', async () => {
-    await expect(() => service.findProductoByCulturaId("0")).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.findProductoByCulturaId("0")).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('associateProductoCultura deberia actualizar el producto para una cultura', async () => {
@@ -142,14 +142,14 @@ describe('CulturaProductoService', () => {
       historia: faker.lorem.paragraph()
     });
 
-    await expect(() => service.associateProductoCultura("0", [newProducto])).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.associateProductoCultura("0", [newProducto])).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('associateProductoCultura deberia arrojar una escepcion por una receta invalida', async () => {
     const newProducto: ProductoEntity = productosList[0];
     newProducto.codigo = "0";
 
-    await expect(() => service.associateProductoCultura(cultura.id, [newProducto])).rejects.toHaveProperty("mensaje", "El producto con el ID dado no fue encontrado");
+    await expect(() => service.associateProductoCultura(cultura.id, [newProducto])).rejects.toHaveProperty("message", "El producto con el ID dado no fue encontrado");
   });
 
   it('deleteProductoCultura deberia eliminar una receta de una cultura', async () => {
@@ -165,12 +165,12 @@ describe('CulturaProductoService', () => {
   });
 
   it('deleteProductoCultura deberia retornar una excepcion por una receta invalida', async () => {
-    await expect(() => service.deleteProductoCultura(cultura.id, "0")).rejects.toHaveProperty("mensaje", "El producto con el ID dado no fue encontrado");
+    await expect(() => service.deleteProductoCultura(cultura.id, "0")).rejects.toHaveProperty("message", "El producto con el ID dado no fue encontrado");
   });
 
   it('deleteProductoCultura deberia arrojar una excepcion por una cultura invalido', async () => {
     const producto: ProductoEntity = productosList[0];
-    await expect(() => service.deleteProductoCultura("0", producto.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.deleteProductoCultura("0", producto.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('deleteProductoCultura deberia arrojar una excepcion por una receta no asociada', async () => {
@@ -180,7 +180,7 @@ describe('CulturaProductoService', () => {
       historia: faker.lorem.paragraph()
     });
 
-    await expect(() => service.deleteProductoCultura(cultura.id, newProducto.codigo)).rejects.toHaveProperty("mensaje", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
+    await expect(() => service.deleteProductoCultura(cultura.id, newProducto.codigo)).rejects.toHaveProperty("message", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
   });
 
 

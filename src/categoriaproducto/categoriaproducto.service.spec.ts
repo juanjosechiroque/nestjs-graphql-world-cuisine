@@ -52,7 +52,7 @@ describe('CategoriaproductoService', () => {
   }); 
 
   it('findOne deberia arrojar una excepcion por una categoria de producto invalida', async () => {
-    await expect(() => service.findOne("0")).rejects.toHaveProperty("mensaje", "La categoria de producto con el ID dado no fue encontrado")
+    await expect(() => service.findOne("0")).rejects.toHaveProperty("message", "La categoria de producto con el ID dado no fue encontrado")
   });  
 
   it('create deberia retornar una nueva categoria de producto', async () => {
@@ -87,7 +87,7 @@ describe('CategoriaproductoService', () => {
     categoriaProducto = {
       ...categoriaProducto, nombre: "New name"
     }
-    await expect(() => service.update("0", categoriaProducto)).rejects.toHaveProperty("mensaje", "La categoria de producto con el ID dado no fue encontrado")
+    await expect(() => service.update("0", categoriaProducto)).rejects.toHaveProperty("message", "La categoria de producto con el ID dado no fue encontrado")
   });  
 
   it('delete deberia eliminar una categoria de producto', async () => {
@@ -101,7 +101,7 @@ describe('CategoriaproductoService', () => {
   it('delete deberia arrojar una excepcion por una categoria de producto invalida', async () => {
     const categoriaProducto: CategoriaproductoEntity = listaCategoriasproducto[0];
     await service.delete(categoriaProducto.codigo);
-    await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "La categoria de producto con el ID dado no fue encontrado")
+    await expect(() => service.delete("0")).rejects.toHaveProperty("message", "La categoria de producto con el ID dado no fue encontrado")
   });
 
 });

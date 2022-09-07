@@ -91,7 +91,7 @@ describe('CulturaRecetaService', () => {
       recetas: null
     })
 
-    await expect(() => service.addRecetaCategoria(newCultura.id, "0")).rejects.toHaveProperty("mensaje", "La receta con el ID dado no fue encontrado");
+    await expect(() => service.addRecetaCategoria(newCultura.id, "0")).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrado");
   });
 
   it('addRecetaCategoria deberia arrojar una excepcion por cultura invalido', async () => {
@@ -105,7 +105,7 @@ describe('CulturaRecetaService', () => {
       cultura: cultura
     });
 
-    await expect(() => service.addRecetaCategoria("0", newReceta.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrada");
+    await expect(() => service.addRecetaCategoria("0", newReceta.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrada");
   });
 
   it('findRecetaByCulturaIdRecetaId deberia retornar una categoria de producto por producto', async () => {
@@ -116,12 +116,12 @@ describe('CulturaRecetaService', () => {
   });
 
   it('findRecetaByCulturaIdRecetaId deberia arrojar una excepcion por una categoria de producto invalida', async () => {
-    await expect(() => service.findRecetaByCulturaIdRecetaId(cultura.id, "0")).rejects.toHaveProperty("mensaje", "La receta con el ID dado no fue encontrado");
+    await expect(() => service.findRecetaByCulturaIdRecetaId(cultura.id, "0")).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrado");
   });
 
   it('findRecetaByCulturaIdRecetaId deberia arrojar una excepcion por una cultura invalido', async () => {
     const pais: RecetaEntity = recetasList[0];
-    await expect(() => service.findRecetaByCulturaIdRecetaId("0", pais.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.findRecetaByCulturaIdRecetaId("0", pais.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('findRecetaByCulturaIdRecetaId deberia arrojar una excepcion por una receta no asociada a cultura', async () => {
@@ -141,7 +141,7 @@ describe('CulturaRecetaService', () => {
       cultura: newCultura
     });
 
-    await expect(() => service.findRecetaByCulturaIdRecetaId(cultura.id, newReceta.codigo)).rejects.toHaveProperty("mensaje", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
+    await expect(() => service.findRecetaByCulturaIdRecetaId(cultura.id, newReceta.codigo)).rejects.toHaveProperty("message", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
   });
 
   it('findRecetasByCulturaId deberia retornar recetas por cultura', async () => {
@@ -150,7 +150,7 @@ describe('CulturaRecetaService', () => {
   });
 
   it('findRecetasByCulturaId deberia arrojar una excepcion por una cultura invalida', async () => {
-    await expect(() => service.findRecetasByCulturaId("0")).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.findRecetasByCulturaId("0")).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('associateRecetasCultura deberia actualizar la receta para una cultura', async () => {
@@ -173,14 +173,14 @@ describe('CulturaRecetaService', () => {
       cultura: cultura
     });
 
-    await expect(() => service.associateRecetasCultura("0", [newReceta])).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.associateRecetasCultura("0", [newReceta])).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('associateRecetasCultura deberia arrojar una escepcion por una receta invalida', async () => {
     const newReceta: RecetaEntity = recetasList[0];
     newReceta.codigo = "0";
 
-    await expect(() => service.associateRecetasCultura(cultura.id, [newReceta])).rejects.toHaveProperty("mensaje", "La receta con el ID dado no fue encontrado");
+    await expect(() => service.associateRecetasCultura(cultura.id, [newReceta])).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrado");
   });
 
   it('deleteRecetaCultura deberia eliminar una receta de una cultura', async () => {
@@ -196,12 +196,12 @@ describe('CulturaRecetaService', () => {
   });
 
   it('deleteRecetaCultura deberia retornar una excepcion por una receta invalida', async () => {
-    await expect(() => service.deleteRecetaCultura(cultura.id, "0")).rejects.toHaveProperty("mensaje", "La receta con el ID dado no fue encontrado");
+    await expect(() => service.deleteRecetaCultura(cultura.id, "0")).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrado");
   });
 
   it('deleteRecetaCultura deberia arrojar una excepcion por una cultura invalido', async () => {
     const pais: RecetaEntity = recetasList[0];
-    await expect(() => service.deleteRecetaCultura("0", pais.codigo)).rejects.toHaveProperty("mensaje", "La cultura gastronómica con el ID dado no fue encontrado");
+    await expect(() => service.deleteRecetaCultura("0", pais.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrado");
   });
 
   it('deleteRecetaCultura deberia arrojar una excepcion por una receta no asociada', async () => {
@@ -221,7 +221,7 @@ describe('CulturaRecetaService', () => {
       cultura: newCultura
     });
 
-    await expect(() => service.deleteRecetaCultura(cultura.id, newReceta.codigo)).rejects.toHaveProperty("mensaje", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
+    await expect(() => service.deleteRecetaCultura(cultura.id, newReceta.codigo)).rejects.toHaveProperty("message", "La receta con el ID dado no se encuentra asociado a la cultura gastronómica");
   });
 
 

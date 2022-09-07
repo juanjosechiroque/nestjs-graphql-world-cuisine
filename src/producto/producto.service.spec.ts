@@ -56,7 +56,7 @@ describe('ProductoService', () => {
   }); 
 
   it('findOne deberia arrojar una excepcion por un producto invalido', async () => {
-    await expect(() => service.findOne("0")).rejects.toHaveProperty("mensaje", "El producto con el ID dado no fue encontrado")
+    await expect(() => service.findOne("0")).rejects.toHaveProperty("message", "El producto con el ID dado no fue encontrado")
   });  
 
   it('create deberia retornar un nuevo producto', async () => {
@@ -99,7 +99,7 @@ describe('ProductoService', () => {
     producto = {
       ...producto, nombre: "New name"
     }
-    await expect(() => service.update("0", producto)).rejects.toHaveProperty("mensaje", "El producto con el ID dado no fue encontrado")
+    await expect(() => service.update("0", producto)).rejects.toHaveProperty("message", "El producto con el ID dado no fue encontrado")
   });  
 
   it('delete deberia eliminar un producto', async () => {
@@ -113,7 +113,7 @@ describe('ProductoService', () => {
   it('delete deberia arrojar una excepcion por un producto invalido', async () => {
     const producto: ProductoEntity = listaProductos[0];
     await service.delete(producto.codigo);
-    await expect(() => service.delete("0")).rejects.toHaveProperty("mensaje", "El producto con el ID dado no fue encontrado")
+    await expect(() => service.delete("0")).rejects.toHaveProperty("message", "El producto con el ID dado no fue encontrado")
   });
 
 });
