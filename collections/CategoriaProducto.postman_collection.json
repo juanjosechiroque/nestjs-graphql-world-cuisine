@@ -15,7 +15,7 @@
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"categoriaproducto_id\", data.id);\r",
+							"pm.globals.set(\"categoriaproducto_id\", data.codigo);\r",
 							"\r",
 							"pm.test(\"Codigo de estado es 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -572,11 +572,6 @@
 		{
 			"key": "baseUrl",
 			"value": "http://localhost:3000/api/v1",
-			"type": "string"
-		},
-		{
-			"key": "categoriaproducto_id",
-			"value": "fa8dde52-eb62-4460-8124-19e810c722e4",
 			"type": "string"
 		}
 	]

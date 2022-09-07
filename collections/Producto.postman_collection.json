@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "cc98a1d7-f932-46e4-b103-a8fbbb1cf3f5",
+		"name": "Producto",
+		"description": "Documentación para el recurso Producto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22977088"
+	},
+	"item": [
+		{
+			"name": "Agregar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"producto_id\", data.codigo);\r",
+							"\r",
+							"pm.test(\"Codigo de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Wasabi\",\r\n  \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\r\n  \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/productos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos"
+					]
+				},
+				"description": "Esta solicitud crea un nuevo producto. El producto debe estar asociado a una categoría de producto existente. El API retorna el recurso creado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "Agregar un producto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Wasabi\",\r\n  \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\r\n  \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac127770\",\r\n  \"nombre\": \"Wasabi\",\r\n  \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\r\n  \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\"\r\n  }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los productos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Numero de productos > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Codigo de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos"
+					]
+				},
+				"description": "Esta solicitud obtiene un listado de los productos existentes."
+			},
+			"response": [
+				{
+					"name": "Obtener todos los productos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac127770\",\n        \"nombre\": \"Wasabi\",\n        \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\n        \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\",\n        \"categoriaProducto\": {\n            \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\n            \"nombre\": \"Condimento\"\n        }\n    },\n    {\n        \"codigo\": \"dsddab90-1276-11ed-861d-021593578426\",\n        \"nombre\": \"Achiote\",\n        \"descripcion\": \"Pigmento natural de color rojo amarillento, el cual se extrae de las semillas de Bixa orellana, un arbusto nativo de América tropical, y que se usa ampliamente en la industria alimentaria y cosmética.\",\n        \"historia\": \"El achiote, en el México prehispánico, se empleó poco en la cocina, pues era una planta sagrada relacionada con la sangre. La producción nacional de este cultivo asciende a 527 toneladas.\",\n        \"categoriaProducto\": {\n            \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\n            \"nombre\": \"Condimento\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos",
+						"{{producto_id}}"
+					]
+				},
+				"description": "Esta solicitud obtiene un producto asociado a un ID existente."
+			},
+			"response": [
+				{
+					"name": "Obtener un producto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productos/{{producto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac127770\",\n    \"nombre\": \"Wasabi\",\n    \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\n    \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\",\n    \"categoriaProducto\": {\n        \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\n        \"nombre\": \"Condimento\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud obtiene un producto asociado a un ID existente."
+			},
+			"response": [
+				{
+					"name": "Obtener un producto inválido",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El producto con el ID dado no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Wasabi japones\",\r\n  \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\r\n  \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos",
+						"{{producto_id}}"
+					]
+				},
+				"description": "Esta solicitud permite actualizar un producto asociado a un ID existente. El API retorna el recurso actualizado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "Actualizar un producto",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Wasabi japones\",\r\n  \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\r\n  \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/productos/{{producto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac127770\",\n    \"nombre\": \"Wasabi japones\",\n    \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\n    \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\",\n    \"categoriaProducto\": {\n        \"codigo\": \"48a9ab90-1276-11ed-861d-0242ac128880\",\n        \"nombre\": \"Condimento\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un producto invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Wasabi de Japon\",\r\n  \"descripcion\": \"El wasabi es una especia o condimento picante de la cocina japonesa, que se usa a menudo en sushi y otros platos con pescado. Se extrae del tallo de la planta del mismo nombre, un rábano denominado con el nombre científico de Eutrema japonicum o Cochlearia wasabi, que pertenece a la familia de las brasicáceas (sinónimo de crucíferas), a la que también pertenecen el nabo, la mostaza y el repollo.\",\r\n  \"historia\": \"El wasabi era una planta silvestre como muchas otras hierbas. Debido a que es una planta que tiene un olor acre y estimulante, se supone que una vez fue utilizada como planta medicinal. En un libro del siglo VI, se puede encontrar la mención más antigua de la palabra Wasabi en Japón. Este documento histórico muestra que en 1221, en el momento de la coronación del emperador, el Wasabi le fue ofrecido a éste. En el siglo XIV, el Wasabi se convirtió en una especia (consumida como lo es hoy en día) para acompañar los platos. Durante el período Edo, el primer shogun Tokugawa apreció mucho el sabor del Wasabi y al asemejarse la forma de la hoja de esta planta al acebo del escudo de armas de la familia Tokugawa, el shogunato Tokugawa puso bajo su protección la cultura del Wasabi.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud permite actualizar un producto asociado a un ID existente. El API retorna el recurso actualizado con el ID asignado."
+			},
+			"response": [
+				{
+					"name": "Actualizar un producto inválido",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El producto con el ID dado no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos",
+						"{{producto_id}}"
+					]
+				},
+				"description": "Esta solicitud elimina un producto asociado a un ID existente."
+			},
+			"response": [
+				{
+					"name": "Borrar un producto",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un producto inválido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"productos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta solicitud elimina un producto asociado a un ID existente."
+			},
+			"response": [
+				{
+					"name": "Borrar un producto inválido",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El producto con el ID dado no fue encontrado\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
