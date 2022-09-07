@@ -74,7 +74,7 @@ export class ProductoCategoriaproductoService {
         if (!producto)
           throw new BusinessLogicException("El producto con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
      
-        if (producto.categoriaProducto.codigo != categoriaproducto.codigo)
+        if ( producto.categoriaProducto != null && producto.categoriaProducto.codigo != categoriaproducto.codigo)
           throw new BusinessLogicException("La categoria de producto con el ID dado no esta asociada al producto", BusinessError.PRECONDITION_FAILED)
   
         producto.categoriaProducto = null;
