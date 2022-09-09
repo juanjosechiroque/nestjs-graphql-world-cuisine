@@ -2,6 +2,8 @@ import { IsNotEmpty, IsNumber, IsString, IsUrl } from "class-validator";
 
 export class RestauranteDto {
 
+    readonly codigo: string;
+    
     @IsString()
     @IsNotEmpty()
     readonly nombre: string;
