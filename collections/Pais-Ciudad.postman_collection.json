@@ -1,21 +1,22 @@
 {
 	"info": {
-		"_postman_id": "fce4f696-486e-47a6-9422-f34942197a3d",
-		"name": "Producto-CategoriaProducto",
+		"_postman_id": "fccda337-7893-4866-8a1d-2f81dab4620b",
+		"name": "Pais-Ciudad",
 		"description": "Documentación para la asociación de Producto con Categoría de Producto",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22977088"
 	},
 	"item": [
 		{
-			"name": "Agregar una categoria de producto a un producto",
+			"name": "Agregar una ciudad a un pais",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.globals.set(\"producto_id\", \"322411d0-3016-496e-85a3-47a792e20700\");\r",
-							"pm.globals.set(\"categoriaproducto_id\", \"b79e360f-b15d-4bb8-af59-21418f0cdda4\");\r",
+							"pm.globals.set(\"ciudad_id\", \"d03c7087-f8d4-4b49-ab39-a5959fad9a84\");\r",
+							"pm.globals.set(\"ciudad_id_2\", \"d952f634-3dba-4fb9-9aeb-b9c97b162a91\");\r",
+							"pm.globals.set(\"pais_id\", \"80c2e38d-3968-4b4d-b560-f7db22a55a45\");\r",
 							"\r",
 							"pm.test(\"Codigo de estado es 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -33,22 +34,22 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/{{categoriaproducto_id}}",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/{{ciudad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
-						"{{categoriaproducto_id}}"
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
+						"{{ciudad_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Agregar una categoria de producto que no existe a un producto",
+			"name": "Agregar una ciudad que no existe a un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -60,7 +61,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no fue encontrada\");\r",
+							"   pm.expect(data.message).to.eql(\"La ciudad con el ID dado no fue encontrada\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -71,14 +72,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
@@ -86,7 +87,7 @@
 			"response": []
 		},
 		{
-			"name": "Agregar una categoria de producto a un producto que no existe",
+			"name": "Agregar una ciudad a un pais que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -98,7 +99,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"   pm.expect(data.message).to.eql(\"El pais con el ID dado no fue encontrado\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -109,22 +110,22 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000/categoriaproductos/{{categoriaproducto_id}}",
+					"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000/ciudades/{{ciudad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
+						"paises",
 						"00000000-0000-0000-0000-000000000000",
-						"categoriaproductos",
-						"{{categoriaproducto_id}}"
+						"ciudades",
+						"{{ciudad_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener una categoria de producto de un producto",
+			"name": "Obtener una ciudad de un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -142,22 +143,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/{{categoriaproducto_id}}",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/{{ciudad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
-						"{{categoriaproducto_id}}"
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
+						"{{ciudad_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener una categoria de producto que no existe de un producto",
+			"name": "Obtener una ciudad que no existe de un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -169,7 +170,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no fue encontrada\");\r",
+							"   pm.expect(data.message).to.eql(\"La ciudad con el ID dado no fue encontrada\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -180,14 +181,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
@@ -195,7 +196,7 @@
 			"response": []
 		},
 		{
-			"name": "Obtener una categoria de producto de un producto que no existe",
+			"name": "Obtener una ciudad en un pais que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -207,7 +208,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"   pm.expect(data.message).to.eql(\"El pais con el ID dado no fue encontrado\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -218,36 +219,34 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000/categoriaproductos/{{categoriaproducto_id}}",
+					"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000/ciudades/{{ciudad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
+						"paises",
 						"00000000-0000-0000-0000-000000000000",
-						"categoriaproductos",
-						"{{categoriaproducto_id}}"
+						"ciudades",
+						"{{ciudad_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener una categoria de producto no asociada al producto",
+			"name": "Obtener una ciudad no asociada al pais",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.globals.set(\"categoriaproducto_id_2\", \"8c166899-951e-4664-9df3-381eb06fe49c\");\r",
-							"\r",
 							"pm.test(\"Codigo de estado es 412\", function () {\r",
 							"   pm.response.to.have.status(412);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no esta asociada al producto\");\r",
+							"   pm.expect(data.message).to.eql(\"La ciudad con el ID dado no se encuentra asociada al pais\");\r",
 							"});\r",
 							""
 						],
@@ -259,22 +258,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/{{categoriaproducto_id_2}}",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/{{ciudad_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
-						"{{categoriaproducto_id_2}}"
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
+						"{{ciudad_id_2}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener la categoria de producto del producto",
+			"name": "Obtener la las ciudades de un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -292,14 +291,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
 						""
 					]
 				}
@@ -307,7 +306,7 @@
 			"response": []
 		},
 		{
-			"name": "Obtener la categoria de producto de un producto que no existe",
+			"name": "Obtener las ciudades de un pais que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -319,7 +318,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"   pm.expect(data.message).to.eql(\"El pais con el ID dado no fue encontrado\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -330,14 +329,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000/categoriaproductos/",
+					"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000/ciudades/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
+						"paises",
 						"00000000-0000-0000-0000-000000000000",
-						"categoriaproductos",
+						"ciudades",
 						""
 					]
 				}
@@ -345,7 +344,7 @@
 			"response": []
 		},
 		{
-			"name": "Actualizar categoria de producto de un producto",
+			"name": "Actualizar ciudad de un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -364,7 +363,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"codigo\": \"b79e360f-b15d-4bb8-af59-21418f0cdda4\",\n    \"nombre\": \"Condimento\"\n}",
+					"raw": "[\n{\n   \"codigo\": \"{{ciudad_id}}\"\n}\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -372,14 +371,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
 						""
 					]
 				}
@@ -387,7 +386,7 @@
 			"response": []
 		},
 		{
-			"name": "Actualizar categoria de producto que no existe en un producto",
+			"name": "Actualizar ciudad que no existe en un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -399,7 +398,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no fue encontrada\");\r",
+							"   pm.expect(data.message).to.eql(\"La ciudad con el ID dado no fue encontrada\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -411,7 +410,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"codigo\": \"00000000-0000-0000-0000-000000000000\",\n    \"nombre\": \"Condimento\"\n}",
+					"raw": "[\n{\n    \"codigo\": \"00000000-0000-0000-0000-000000000000\"\n}\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -419,14 +418,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
 						""
 					]
 				}
@@ -434,7 +433,7 @@
 			"response": []
 		},
 		{
-			"name": "Actualizar categoria de producto de un producto no asociado",
+			"name": "Actualizar ciudad de un pais no asociado",
 			"event": [
 				{
 					"listen": "test",
@@ -446,7 +445,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"   pm.expect(data.message).to.eql(\"El pais con el ID dado no fue encontrado\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -458,7 +457,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"codigo\": \"b79e360f-b15d-4bb8-af59-21418f0cdda4\",\n    \"nombre\": \"Condimento\"\n}",
+					"raw": "{\n    \"codigo\": \"{{ciudad_id}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -466,14 +465,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000/categoriaproductos/",
+					"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000/ciudades/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
+						"paises",
 						"00000000-0000-0000-0000-000000000000",
-						"categoriaproductos",
+						"ciudades",
 						""
 					]
 				}
@@ -481,7 +480,7 @@
 			"response": []
 		},
 		{
-			"name": "Eliminar una categoria de producto de un producto",
+			"name": "Eliminar una ciudad de un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -499,22 +498,22 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/{{categoriaproducto_id}}",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/{{ciudad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
-						"{{categoriaproducto_id}}"
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
+						"{{ciudad_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Eliminar una categoria de producto que no existe de un producto",
+			"name": "Eliminar una ciudad que no existe de un pais",
 			"event": [
 				{
 					"listen": "test",
@@ -526,7 +525,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no fue encontrada\");\r",
+							"   pm.expect(data.message).to.eql(\"La ciudad con el ID dado no fue encontrada\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -537,14 +536,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
@@ -552,7 +551,7 @@
 			"response": []
 		},
 		{
-			"name": "Eliminar una categoria de producto de un producto que no existe",
+			"name": "Eliminar una ciudad de un pais que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -564,7 +563,7 @@
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"El producto con el ID dado no fue encontrado\");\r",
+							"   pm.expect(data.message).to.eql(\"El pais con el ID dado no fue encontrado\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -575,38 +574,34 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000/categoriaproductos/{{categoriaproducto_id}}",
+					"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000/ciudades/{{ciudad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
+						"paises",
 						"00000000-0000-0000-0000-000000000000",
-						"categoriaproductos",
-						"{{categoriaproducto_id}}"
+						"ciudades",
+						"{{ciudad_id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Eliminar una categoria de producto no asociada al producto",
+			"name": "Eliminar una ciudad no asociada al pais",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.globals.set(\"producto_id\", \"8bec6e4c-ec11-482c-93fe-2cdb6c794714\");\r",
-							"\r",
-							"pm.globals.set(\"categoriaproducto_id_2\", \"dd221bf9-8324-4687-b989-ed3857fede74\");\r",
-							"\r",
 							"pm.test(\"Codigo de estado es 412\", function () {\r",
 							"   pm.response.to.have.status(412);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Obtener mensaje de respuesta esperado\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"La categoria de producto con el ID dado no esta asociada al producto\");\r",
+							"   pm.expect(data.message).to.eql(\"La ciudad con el ID dado no se encuentra asociada al pais\");\r",
 							"});\r",
 							""
 						],
@@ -618,15 +613,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/productos/{{producto_id}}/categoriaproductos/{{categoriaproducto_id_2}}",
+					"raw": "{{baseUrl}}/paises/{{pais_id}}/ciudades/{{ciudad_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"productos",
-						"{{producto_id}}",
-						"categoriaproductos",
-						"{{categoriaproducto_id_2}}"
+						"paises",
+						"{{pais_id}}",
+						"ciudades",
+						"{{ciudad_id_2}}"
 					]
 				}
 			},
