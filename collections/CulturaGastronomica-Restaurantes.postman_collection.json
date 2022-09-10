@@ -1,0 +1,847 @@
+{
+	"info": {
+		"_postman_id": "bdc77e16-dfc8-48ed-a8ba-1510fd4c9944",
+		"name": "CulturaGastronomica-Restaurantes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agregar un restaurante a una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante a una cultura gastronómica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes/{{restaurante_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"restaurantes",
+								"{{restaurante_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"paisesCultura\": [],\n    \"productos\": [],\n    \"recetas\": [],\n    \"restaurantes\": [\n        {\n            \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Storia D'amore\",\n            \"estrellasMichelin\": 0,\n            \"fechaConsecucion\": \"28/04/2000\",\n            \"descripcion\": \"Restaurante ubicado en la zona T de Bogotá especializado en comida Italiana, Europea y Apto para vegetarianos\",\n            \"direccion\": \"Carrera 13 82 36\",\n            \"telefono\": 3107620025,\n            \"foto\": \"https://www.tripadvisor.co/Restaurant_Review-g294074-d21340928-Reviews-Storia_D_amore_Zona_T-Bogota.html#photos;aggregationId=&albumid=101&filter=7&ff=475993016\",\n            \"ciudad\": {\n                \"codigo\": \"8e061964-1276-11ed-861d-0242ac120002\",\n                \"nombre\": \"Bogotá\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un restaurante a una cultura gastronómica invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronómica con el ID dado no fue encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante a una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes/{{restaurante_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurantes",
+								"{{restaurante_id_1}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes/{{restaurante_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"restaurantes",
+								"{{restaurante_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Storia D'amore\",\n    \"estrellasMichelin\": 0,\n    \"fechaConsecucion\": \"28/04/2000\",\n    \"descripcion\": \"Restaurante ubicado en la zona T de Bogotá especializado en comida Italiana, Europea y Apto para vegetarianos\",\n    \"direccion\": \"Carrera 13 82 36\",\n    \"telefono\": 3107620025,\n    \"foto\": \"https://www.tripadvisor.co/Restaurant_Review-g294074-d21340928-Reviews-Storia_D_amore_Zona_T-Bogota.html#photos;aggregationId=&albumid=101&filter=7&ff=475993016\",\n    \"ciudad\": {\n        \"codigo\": \"8e061964-1276-11ed-861d-0242ac120002\",\n        \"nombre\": \"Bogotá\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los restaurantes de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"restaurantes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los restaurantes de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n        \"nombre\": \"Storia D'amore\",\n        \"estrellasMichelin\": 0,\n        \"fechaConsecucion\": \"28/04/2000\",\n        \"descripcion\": \"Restaurante ubicado en la zona T de Bogotá especializado en comida Italiana, Europea y Apto para vegetarianos\",\n        \"direccion\": \"Carrera 13 82 36\",\n        \"telefono\": 3107620025,\n        \"foto\": \"https://www.tripadvisor.co/Restaurant_Review-g294074-d21340928-Reviews-Storia_D_amore_Zona_T-Bogota.html#photos;aggregationId=&albumid=101&filter=7&ff=475993016\",\n        \"ciudad\": {\n            \"codigo\": \"8e061964-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Bogotá\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante de una cultura gastronómica invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronómica con el ID dado no fue encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes/{{restaurante_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurantes",
+								"{{restaurante_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los restaurantes de una cultura gastronómica invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronómica con el ID dado no fue encontrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurantes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los restaurantes de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar restaurantes de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n       \"id\": \"{{restaurante_id}}\"\n   }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"restaurantes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar restaurantes de una cultura gastronómica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n       \"id\": \"{{restaurante_id_2}}\"\n   }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"paisesCultura\": [],\n    \"productos\": [],\n    \"recetas\": [],\n    \"restaurantes\": [\n        {\n            \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Storia D'amore\",\n            \"estrellasMichelin\": 0,\n            \"fechaConsecucion\": \"28/04/2000\",\n            \"descripcion\": \"Restaurante ubicado en la zona T de Bogotá especializado en comida Italiana, Europea y Apto para vegetarianos\",\n            \"direccion\": \"Carrera 13 82 36\",\n            \"telefono\": 3107620025,\n            \"foto\": \"https://www.tripadvisor.co/Restaurant_Review-g294074-d21340928-Reviews-Storia_D_amore_Zona_T-Bogota.html#photos;aggregationId=&albumid=101&filter=7&ff=475993016\",\n            \"ciudad\": {\n                \"codigo\": \"8e061964-1276-11ed-861d-0242ac120002\",\n                \"nombre\": \"Bogotá\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar restaurantes invalido de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"El restaurantes con el ID dado no fue encontrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n       \"codigo\": \"00000000-0000-0000-0000-000000000000\"\n   }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"restaurantes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar restaurantes de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n       \"id\": \"{{restaurante_id_2}}\"\n   }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar restaurantes de una cultura gastronómica invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronómica con el ID dado no fue encontrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n       \"id\": \"{{restaurante_id}}\"\n   }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurantes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar restaurantes de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n       \"id\": \"{{restaurante_id_2}}\"\n   }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un restaurante de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un restaurante de una cultura gastronómica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes/{{restaurante_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"restaurantes",
+								"{{restaurante_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar un restaurante de una cultura gastronómica invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronómica con el ID dado no fue encontrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un restaurante de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes/{{restaurante_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurantes",
+								"{{restaurante_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un restaurante que no esta asociada a una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el ID dado no fue encontrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un restaurante de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/restaurantes/{{restaurante_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"restaurantes",
+								"{{restaurante_id_1}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "cultura_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "restaurante_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
