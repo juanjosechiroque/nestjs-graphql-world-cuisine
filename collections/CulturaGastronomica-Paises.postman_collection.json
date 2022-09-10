@@ -839,12 +839,12 @@
 		},
 		{
 			"key": "cultura_id",
-			"value": "82e6c90c-61c7-4bdb-9740-58d71d41a82f",
+			"value": "",
 			"type": "default"
 		},
 		{
 			"key": "pais_id",
-			"value": "1d7e27ab-aa51-4b8f-b9c3-30147f4c5ca8",
+			"value": "",
 			"type": "default"
 		}
 	]
