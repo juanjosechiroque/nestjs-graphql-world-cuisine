@@ -52,16 +52,16 @@ export class RestauranteCiudadService {
         return restaurante.ciudad;
     }
      
-    async associateCiudadRestaurante(codigoRestaurante: string, newCiudad: CiudadEntity): Promise<RestauranteEntity> {
+    async associateCiudadRestaurante(codigoRestaurante: string, newCiudadId: string): Promise<RestauranteEntity> {
         const restaurante: RestauranteEntity = await this.restauranteRepository.findOne({where: {codigo: codigoRestaurante}, relations: ["ciudad"]});
         if (!restaurante)
           throw new BusinessLogicException("El restaurante con el ID dado no fue encontrado", BusinessError.NOT_FOUND);
 
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {codigo: newCiudad.codigo}});
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {codigo: newCiudadId}});
         if (!ciudad)
             throw new BusinessLogicException("La ciudad con el ID dado no fue encontrada", BusinessError.NOT_FOUND)
         
-        restaurante.ciudad = newCiudad;
+        restaurante.ciudad = ciudad;
         return await this.restauranteRepository.save(restaurante);
       }
      

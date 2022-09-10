@@ -26,10 +26,9 @@ export class RestauranteCiudadController {
         return await this.restauranteCiudadService.findCiudadByRestauranteId(restauranteId);
     }
 
-    @Put(':restauranteId/ciudades')
-    async associateCiudadRestaurante(@Body() ciudadDto: CiudadDto, @Param('restauranteId') restauranteId: string){
-        const ciudad = plainToInstance(CiudadEntity, ciudadDto)
-        return await this.restauranteCiudadService.associateCiudadRestaurante(restauranteId, ciudad);
+    @Put(':restauranteId/ciudades/:ciudadId')
+    async associateCiudadRestaurante(@Param('restauranteId') restauranteId: string, @Param('ciudadId') ciudadId: string){
+        return await this.restauranteCiudadService.associateCiudadRestaurante(restauranteId, ciudadId);
     }
     
     @Delete(':restauranteId/ciudades/:ciudadId')
