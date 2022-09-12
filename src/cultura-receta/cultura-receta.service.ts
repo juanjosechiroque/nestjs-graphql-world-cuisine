@@ -15,7 +15,7 @@ export class CulturaRecetaService {
         private readonly recetaRepository: Repository<RecetaEntity>
     ) { }
 
-    async addRecetaCategoria(codigoCultura: string, codigoReceta: string): Promise<CulturaEntity> {
+    async addRecetaCultura(codigoCultura: string, codigoReceta: string): Promise<CulturaEntity> {
         const Receta: RecetaEntity = await this.recetaRepository.findOne({ where: { codigo: codigoReceta } });
         if (!Receta)
             throw new BusinessLogicException("La receta con el ID dado no fue encontrado", BusinessError.NOT_FOUND);

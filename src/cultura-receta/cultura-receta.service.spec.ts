@@ -78,7 +78,7 @@ describe('CulturaRecetaService', () => {
       recetas: null
     })
 
-    const result: CulturaEntity = await service.addRecetaCategoria(newCultura.id, newReceta.codigo);
+    const result: CulturaEntity = await service.addRecetaCultura(newCultura.id, newReceta.codigo);
 
     expect(result.recetas).not.toBeNull();
     expect(result.recetas[0].nombre).toBe(newReceta.nombre)
@@ -91,7 +91,7 @@ describe('CulturaRecetaService', () => {
       recetas: null
     })
 
-    await expect(() => service.addRecetaCategoria(newCultura.id, "0")).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrado");
+    await expect(() => service.addRecetaCultura(newCultura.id, "0")).rejects.toHaveProperty("message", "La receta con el ID dado no fue encontrado");
   });
 
   it('addRecetaCategoria deberia arrojar una excepcion por cultura invalido', async () => {
@@ -105,7 +105,7 @@ describe('CulturaRecetaService', () => {
       cultura: cultura
     });
 
-    await expect(() => service.addRecetaCategoria("0", newReceta.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrada");
+    await expect(() => service.addRecetaCultura("0", newReceta.codigo)).rejects.toHaveProperty("message", "La cultura gastronómica con el ID dado no fue encontrada");
   });
 
   it('findRecetaByCulturaIdRecetaId deberia retornar una categoria de producto por producto', async () => {
