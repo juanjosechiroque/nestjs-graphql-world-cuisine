@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "124fc930-3143-46b6-a302-0349faf10aee",
+		"name": "CulturaGastronomica-Recetas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22978860"
+	},
+	"item": [
+		{
+			"name": "Agregar receta a una cultura gastronomica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas",
+						"{{receta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar receta a una cultura gastronomica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\":\"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"paisesCultura\":[],\n    \"productos\": [],\n    \"recetas\": [\n       {\n           \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n           \"nombre\": \"Flan\",\n           \"descripcion\": \"El flan es un postre elaborado con una natilla, teniendo como ingredientes principales huevos enteros, leche y azúcar, que luego es refrigerado para obtener una textura cremosa y gelatinosa.\",\n           \"fotoPlato\": \"https://www.cocinaabuenashoras.com/flan-sin-horno.html\",\n           \"procesoPreparacion\":\"Pre calienta el horno a 350°F y ten a mano el molde que usarás para el baño de maría. Coloca el azúcar para el caramelo en un sartén a fuego medio con las 2 cucharadas de agua hasta que se derrita en forma homogénea.\",\n           \"videoPreparacion\":\"https://www.youtube.com/watch?v=WfDpQBkCUXo\",\n           \"tipoReceta\": \"POSTRE\"\n       }\n   ],\n    \"restaurantes\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar receta invalida a una cultura gastronomica",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar receta invalida a una cultura gastronomica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La receta con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar receta a una cultura gastronomica invalida",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas/{{receta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"recetas",
+						"{{receta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar receta a una cultura gastronomica invalida",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta de una cultura gastronómica",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas",
+						"{{receta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una receta de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Flan\",\n    \"descripcion\": \"El flan es un postre elaborado con una natilla, teniendo como ingredientes principales huevos enteros, leche y azúcar, que luego es refrigerado para obtener una textura cremosa y gelatinosa.\",\n    \"fotoPlato\": \"https://www.cocinaabuenashoras.com/flan-sin-horno.html\",\n    \"procesoPreparacion\": \"Pre calienta el horno a 350°F y ten a mano el molde que usarás para el baño de maría. Coloca el azúcar para el caramelo en un sartén a fuego medio con las 2 cucharadas de agua hasta que se derrita en forma homogénea.\",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=WfDpQBkCUXo\",\n    \"tipoReceta\": \"POSTRE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta no asociada de una cultura gastronómica",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas",
+						"{{receta_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una receta no asociada de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"La receta con el id dado no esta asociado a la cultura gastronómica\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta de una cultura gastronómica invalida",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas/{{receta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"recetas",
+						"{{receta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una receta de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas de una cultura gastronómica",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todas las recetas de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n        \"nombre\": \"Flan\",\n        \"descripcion\": \"El flan es un postre elaborado con una natilla, teniendo como ingredientes principales huevos enteros, leche y azúcar, que luego es refrigerado para obtener una textura cremosa y gelatinosa.\",\n        \"fotoPlato\": \"https://www.cocinaabuenashoras.com/flan-sin-horno.html\",\n        \"procesoPreparacion\": \"Pre calienta el horno a 350°F y ten a mano el molde que usarás para el baño de maría. Coloca el azúcar para el caramelo en un sartén a fuego medio con las 2 cucharadas de agua hasta que se derrita en forma homogénea.\",\n        \"videoPreparacion\": \"https://www.youtube.com/watch?v=WfDpQBkCUXo\",\n        \"tipoReceta\": \"POSTRE\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas de una cultura gastronómica invalida",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todas las recetas de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"recetas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar recetas de una cultura gastronómica",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n       \"id\": \"{{receta_id_2}}\"\n   }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}//culturasgastronomicas/{{cultura_id}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"",
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar recetas de una cultura gastronómica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n       \"id\": \"{{receta_id_2}}\"\n   }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}//culturasgastronomicas/{{cultura_id}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"",
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n    \"paisesCultura\": [],\n    \"productos\": [],\n    \"recetas\": [\n        {\n            \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Flan\",\n            \"descripcion\": \"El flan es un postre elaborado con una natilla, teniendo como ingredientes principales huevos enteros, leche y azúcar, que luego es refrigerado para obtener una textura cremosa y gelatinosa.\",\n            \"fotoPlato\": \"https://www.cocinaabuenashoras.com/flan-sin-horno.html\",\n            \"procesoPreparacion\": \"Pre calienta el horno a 350°F y ten a mano el molde que usarás para el baño de maría. Coloca el azúcar para el caramelo en un sartén a fuego medio con las 2 cucharadas de agua hasta que se derrita en forma homogénea.\",\n            \"videoPreparacion\": \"https://www.youtube.com/watch?v=WfDpQBkCUXo\",\n            \"tipoReceta\": \"POSTRE\"\n        }\n    ],\n    \"restaurantes\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar recetas de una cultura gastronómica invalida",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n       \"id\": \"{{receta_id_2}}\"\n   }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}//culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"",
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar recetas de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n       \"id\": \"{{receta_id_2}}\"\n   }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}//culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"",
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"recetas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta de una cultura gastronómica",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas",
+						"{{receta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una receta de una cultura gastronómica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta no asociada de una cultura gastronómica",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"{{cultura_id}}",
+						"recetas",
+						"{{receta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una receta no asociada de una cultura gastronómica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/{{cultura_id}}/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"{{cultura_id}}",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta de una cultura gastronómica invalida",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas/{{receta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturasgastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"recetas",
+						"{{receta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una receta de una cultura gastronómica invalida",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturasgastronomicas/00000000-0000-0000-0000-000000000000/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturasgastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La cultura gastronómica con el id dado no se encuentra\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "<Basic Auth Username>",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "<Basic Auth Password>",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}

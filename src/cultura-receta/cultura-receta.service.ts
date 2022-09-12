@@ -72,7 +72,7 @@ export class CulturaRecetaService {
     async deleteRecetaCultura(codigoCultura: string, codigoReceta: string){
         const Receta: RecetaEntity = await this.recetaRepository.findOne({where: {codigo: codigoReceta}});
         if (!Receta)
-          throw new BusinessLogicException("La receta con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+          throw new BusinessLogicException("La receta con el ID dado no fue encontrado", BusinessError.PRECONDITION_FAILED)
     
         const cultura: CulturaEntity = await this.culturaRepository.findOne({where: {id: codigoCultura}, relations: ["recetas"]});
         if (!cultura)
