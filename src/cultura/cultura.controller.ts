@@ -27,8 +27,8 @@ export class CulturaController {
   }
 
   @Put(':culturaCodigo')
-  async update(@Param('culturaCodigo') culturaCodigo: string, @Body() CulturaDto: CulturaDto) {
-    const cultura: CulturaEntity = plainToInstance(CulturaEntity, CulturaDto);
+  async update(@Param('culturaCodigo') culturaCodigo: string, @Body() culturaDto: CulturaDto) {
+    const cultura: CulturaEntity = plainToInstance(CulturaEntity, culturaDto);
     return await this.culturaService.update(culturaCodigo, cultura);
   }
 

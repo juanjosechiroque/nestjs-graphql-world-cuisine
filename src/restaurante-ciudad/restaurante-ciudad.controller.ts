@@ -1,8 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { plainToInstance } from 'class-transformer';
-import { CiudadDto } from 'src/ciudad/ciudad.dto';
-import { CiudadEntity } from 'src/ciudad/ciudad.entity';
+import { Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { RestauranteCiudadService } from './restaurante-ciudad.service';
 

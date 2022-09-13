@@ -1,5 +1,5 @@
 import { CiudadEntity } from "../ciudad/ciudad.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class RestauranteEntity {
