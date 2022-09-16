@@ -24,13 +24,16 @@ import { PaisEntity } from './pais/pais.entity';
 import { ProductoEntity } from './producto/producto.entity';
 import { RecetaEntity } from './receta/receta.entity';
 import { RestauranteEntity } from './restaurante/restaurante.entity';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [RestauranteModule, CiudadModule, PaisModule,
     CulturaModule, RecetaModule, ProductoModule, CategoriaproductoModule,
     CulturaPaisModule, CulturaProductoModule, CulturaRecetaModule,
     CulturaRestauranteModule, PaisCiudadModule, CiudadPaisModule,
-    ProductoCategoriaproductoModule, RestauranteCiudadModule,
+    ProductoCategoriaproductoModule, RestauranteCiudadModule, UserModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
