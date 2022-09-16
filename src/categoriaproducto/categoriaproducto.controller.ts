@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { CategoriaproductoDto } from './categoriaproducto.dto';
 import { CategoriaproductoEntity } from './categoriaproducto.entity';
 import { CategoriaproductoService } from './categoriaproducto.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('categoriasproducto')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CategoriaproductoController {

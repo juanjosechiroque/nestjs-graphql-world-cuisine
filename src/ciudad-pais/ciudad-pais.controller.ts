@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { PaisEntity } from 'src/pais/pais.entity';
 import { PaisDto } from '../pais/pais.dto';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { CiudadPaisService } from './ciudad-pais.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('ciudades')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CiudadPaisController {
