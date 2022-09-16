@@ -8,21 +8,22 @@ import { CategoriaproductoEntity } from './categoriaproducto.entity';
 import { CategoriaproductoService } from './categoriaproducto.service';
 import { Role } from "../user/role.enum";
 import { HasRoles } from "../user/roles.decorator";
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
-@UseGuards(JwtAuthGuard)
 @Controller('categoriasproducto')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CategoriaproductoController {
     constructor(private readonly categoriaproductoService: CategoriaproductoService) {}
 
   @Get()
-  @HasRoles(Role.ADMIN)
+  @HasRoles(Role.ADMIN,Role.READER)
   async findAll() {
     return await this.categoriaproductoService.findAll();
   }
 
   @Get(':categoriaproductoCodigo')
-  @HasRoles(Role.ADMIN)
+  @HasRoles(Role.ADMIN,Role.READER)
   async findOne(@Param('categoriaproductoCodigo') categoriaproductoCodigo: string) {
     return await this.categoriaproductoService.findOne(categoriaproductoCodigo);
   }
