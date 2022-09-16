@@ -1,15 +1,16 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, SetMetadata, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { Roles } from 'src/auth/decorator/role-decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { Role } from 'src/user/role.enum';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Role } from '../user/role.enum';
+import { HasRoles } from '../user/roles.decorator';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { RestauranteDto } from './restaurante.dto';
 import { RestauranteEntity } from './restaurante.entity';
 import { RestauranteService } from './restaurante.service';
 
-@UseGuards(JwtAuthGuard)
 @Controller('restaurantes')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(BusinessErrorsInterceptor)
 export class RestauranteController {
 
@@ -17,35 +18,35 @@ export class RestauranteController {
         private readonly restauranteService: RestauranteService
     ){}
 
-    @Roles(Role.ADMIN)
     @Get()
+    @HasRoles(Role.ADMIN,Role.READER)
     async findAll() {
         return await this.restauranteService.findAll();
     }
 
-    @Roles(Role.ADMIN)
     @Get(':restauranteCodigo')
+    @HasRoles(Role.ADMIN,Role.READER)
     async findOne(@Param('restauranteCodigo') restauranteCodigo: string) {
         return await this.restauranteService.findOne(restauranteCodigo);
     }
 
-    @Roles(Role.ADMIN)
     @Post()
+    @HasRoles(Role.ADMIN)
     async create(@Body() restauranteDto: RestauranteDto) {
         const restaurante = plainToInstance(RestauranteEntity, restauranteDto)
         return await this.restauranteService.create(restaurante);
     }
     
-    @Roles(Role.ADMIN)
     @Put(':restauranteCodigo')
+    @HasRoles(Role.ADMIN)
     async update(@Param('restauranteCodigo') restauranteCodigo: string, @Body() restauranteDto: RestauranteDto){
         const restaurante: RestauranteEntity = plainToInstance(RestauranteEntity, restauranteDto);
         return await this.restauranteService.update(restauranteCodigo, restaurante);
     }
 
-    @Roles(Role.ADMIN, Role.URESTAURANTE)
     @Delete(':restauranteCodigo')
     @HttpCode(204)
+    @HasRoles(Role.ADMIN,Role.URESTAURANTE)
     async delete(@Param('restauranteCodigo') restauranteCodigo: string) {
         return await this.restauranteService.delete(restauranteCodigo);
     }
