@@ -35,17 +35,22 @@ import { AuthModule } from './auth/auth.module';
     ProductoCategoriaproductoModule, RestauranteCiudadModule, UserModule,
     AuthModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'cultura',
-      entities: [CategoriaproductoEntity, CiudadEntity, CulturaEntity, PaisEntity, ProductoEntity, RecetaEntity, RestauranteEntity],
-      dropSchema: true,
-      synchronize: true,
-      keepConnectionAlive: true
-    })
+        type: 'postgres',
+        host: 'ec2-34-231-42-166.compute-1.amazonaws.com',
+        port: 5432,
+        username: 'zgteahouxxryhn',
+        password: '632e2bde91e7d7d50dc4699f7dcedf309f0829655503afc6317969424476ec64',
+        database: 'd9o0q5vg224a19',
+        entities: [CategoriaproductoEntity, CiudadEntity, CulturaEntity, PaisEntity, ProductoEntity, RecetaEntity, RestauranteEntity],
+        dropSchema: false,
+        synchronize: true,
+        keepConnectionAlive: true,
+        ssl: {
+          rejectUnauthorized: false
+        }
+    }),
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

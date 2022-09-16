@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RestauranteDto } from '../restaurante/restaurante.dto';
 import { RestauranteEntity } from '../restaurante/restaurante.entity';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { CulturaRestauranteService } from './cultura-restaurante.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('culturasgastronomicas')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CulturaRestauranteController {
