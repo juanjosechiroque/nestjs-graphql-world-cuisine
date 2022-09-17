@@ -8,9 +8,10 @@ import { BusinessErrorsInterceptor } from '../shared/interceptors/business-error
 import { ProductoCategoriaproductoService } from './producto-categoriaproducto.service';
 import { Role } from "../user/role.enum";
 import { HasRoles } from "../user/roles.decorator";
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
-@UseGuards(JwtAuthGuard)
 @Controller('productos')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(BusinessErrorsInterceptor)
 export class ProductoCategoriaproductoController {
     constructor(private readonly productoCategoriaproductoService: ProductoCategoriaproductoService){}
@@ -22,13 +23,13 @@ export class ProductoCategoriaproductoController {
     }
 
     @Get(':productoCodigo/categoriaproductos/:categoriaproductoCodigo')
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMIN,Role.READER)
     async findCategoriaproductoByProductoIdCategoriaproductoId(@Param('productoCodigo') productoCodigo: string, @Param('categoriaproductoCodigo') categoriaproductoCodigo: string){
         return await this.productoCategoriaproductoService.findCategoriaproductoByProductoIdCategoriaproductoId(productoCodigo, categoriaproductoCodigo);
     }
 
     @Get(':productoCodigo/categoriaproductos')
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMIN,Role.READER)
     async findCategoriaproductosByProductoId(@Param('productoCodigo') productoCodigo: string){
         return await this.productoCategoriaproductoService.findCategoriaproductosByProductoId(productoCodigo);
     }
