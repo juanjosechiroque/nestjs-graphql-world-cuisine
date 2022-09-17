@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import constants from 'src/shared/security/constants';
+import constants from '../shared/security/constants';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 
