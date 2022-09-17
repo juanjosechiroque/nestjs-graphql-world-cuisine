@@ -1,0 +1,539 @@
+{
+	"info": {
+		"_postman_id": "8576ec1a-0406-497f-acdc-dd11e448ccbb",
+		"name": "Receta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3824375"
+	},
+	"item": [
+		{
+			"name": "Agregar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"receta_id\", data.codigo);",
+							"",
+							"pm.test(\"Codigo de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"nombre\": \"Receta galletas\",\n   \"descripcion\": \"Después de aprender a hacer galletas con esta receta no vas a volver a bajar a comprarlas nunca. Para esta receta de galletas solo necesitas tres ingredientes y media hora de tu tiempo.\",\n   \"fotoPlato\": \"https://www.google.com/imgres?imgurl=https%3A%2F%2Fs1.eestatic.com%2F2020%2F04%2F16%2Fcocinillas%2Frecetas%2Fpostres%2Freposteria-galletas-postres_482962222_150389308_1706x960.jpg&imgrefurl=https%3A%2F%2Fwww.elespanol.com%2Fcocinillas%2Frecetas%2Fpostres%2F20200416%2Freceta-galletas-nunca-hecho%2F1001914858500_30.html&tbnid=KVBgBMc-Rx7IdM&vet=12ahUKEwiK-rSR_Jr6AhUTbjABHdLGCCcQMygBegUIARCKAg..i&docid=-TUJCaK734iMDM&w=1706&h=960&q=receta%20de%20galletas&ved=2ahUKEwiK-rSR_Jr6AhUTbjABHdLGCCcQMygBegUIARCKAg\",\n    \"procesoPreparacion\": \"1. Precalentamos el horno a 180ºC. 2. Batimos la mantequilla con el azúcar hasta obtener una mezcla con textura de crema completamente homogénea. 3. Añadimos la harina tamizada y el bicarbonato (que es opcional pero muy recomendable) cucharada a cucharada según vamos mezclándolo todo. 4. Hacemos bolas y las aplastamos para darle forma a las galletas de unos 6 cm de ancho y 3 mm de espesor. Las ponemos en papel vegetal sobre una bandeja de horno.\",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=rGCgvJwjExc\",\n    \"tipoReceta\": \"POSTRE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar una receta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"California roll\",\r\n  \"descripcion\": \"El California roll es un maki-sushi, una clase de sushi, en ocasiones realizado de adentro hacia afuera uramaki (arroz por fuera y los ingredientes dentro), conteniendo pepino, palito de cangrejo, huevas de gambas, mayonesa y aguacate. En ciertas veces, se sustituye el palito de cangrejo por ensalada de cangrejo, y a veces fuera de la capa de arroz (uramaki) y rebozado con semillas de sésamo o tobiko. Otras preparaciones incluyen zanahoria en el lugar del pepino o nori. En Filipinas, se agrega una rodaja de mango.\",\r\n  \"fotoPlato\": \"https://www.196flavors.com/wp-content/uploads/2014/10/california-roll-3-FP.jpg\",\r\n  \"procesoPreparacion\": \"Paso 1 Forrar la esterilla con papel film. Colocar el alga nori sobre la esterilla y cubrirla con shari (arroz para sushi). Paso 2 Espolvorear a gusto con las semillas y dar vuelta el nori para que quede el arroz sobre la esterilla. Paso 3 Distribuir sobre el centro del alga un poco de mayonesa y 1 kanikama. Paso 4 Cortar la palta en rodajas finas y el pepino en tiras. Colocar sobre el kanikama y enrollar, con la esterilla para darle forma apretar bien pero no en exceso. Paso 5 Cortar cada rollo en 8 bocados, repetir con el resto de los ingredientes (salen 2 rollos por alga). Servirlos con salsa de soja y wasabi. \",\r\n  \"videoPreparacion\": \"https://www.youtube.com/watch?v=3WG_IGEMoYE\",\r\n  \"tipoReceta\": \"PLATO_FUERTE\",\r\n  \"culturaGastronomica\": {\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac125550\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac126660\",\n    \"nombre\": \"California roll\",\n    \"descripcion\": \"El California roll es un maki-sushi, una clase de sushi, en ocasiones realizado de adentro hacia afuera uramaki (arroz por fuera y los ingredientes dentro), conteniendo pepino, palito de cangrejo, huevas de gambas, mayonesa y aguacate. En ciertas veces, se sustituye el palito de cangrejo por ensalada de cangrejo, y a veces fuera de la capa de arroz (uramaki) y rebozado con semillas de sésamo o tobiko. Otras preparaciones incluyen zanahoria en el lugar del pepino o nori. En Filipinas, se agrega una rodaja de mango.\",\n    \"fotoPlato\": \"https://www.196flavors.com/wp-content/uploads/2014/10/california-roll-3-FP.jpg\",\n    \"procesoPreparacion\": \"Paso 1 Forrar la esterilla con papel film. Colocar el alga nori sobre la esterilla y cubrirla con shari (arroz para sushi). Paso 2 Espolvorear a gusto con las semillas y dar vuelta el nori para que quede el arroz sobre la esterilla. Paso 3 Distribuir sobre el centro del alga un poco de mayonesa y 1 kanikama. Paso 4 Cortar la palta en rodajas finas y el pepino en tiras. Colocar sobre el kanikama y enrollar, con la esterilla para darle forma apretar bien pero no en exceso. Paso 5 Cortar cada rollo en 8 bocados, repetir con el resto de los ingredientes (salen 2 rollos por alga). Servirlos con salsa de soja y wasabi. \",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=3WG_IGEMoYE\",\n    \"tipoReceta\": \"PLATO_FUERTE\",\n    \"culturaGastronomica\": {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac125550\",\n        \"nombre\": \"Cultura japonesa\",\n        \"descripcion\": \"La gastronomía de Japón como cocina nacional ha evolucionado, a través de los siglos, a causa de muchos cambios políticos, sociales y de recursos, comenzando por la Edad Antigua, en la que la mayoría de la cocina estaba influenciada por la cultura china. Finalmente, la cocina cambió con el advenimiento de la Edad Media que marcó el comienzo de un abandono del elitismo con la normativa del shogunato. Al principio de la Edad Moderna tuvieron lugar grandes cambios que introdujeron en Japón la cultura occidental.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Numero de recetas > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Codigo de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todas las recetas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\n    {\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac126660\",\n    \"nombre\": \"California roll\",\n    \"descripcion\": \"El California roll es un maki-sushi, una clase de sushi, en ocasiones realizado de adentro hacia afuera uramaki (arroz por fuera y los ingredientes dentro), conteniendo pepino, palito de cangrejo, huevas de gambas, mayonesa y aguacate. En ciertas veces, se sustituye el palito de cangrejo por ensalada de cangrejo, y a veces fuera de la capa de arroz (uramaki) y rebozado con semillas de sésamo o tobiko. Otras preparaciones incluyen zanahoria en el lugar del pepino o nori. En Filipinas, se agrega una rodaja de mango.\",\n    \"fotoPlato\": \"https://www.196flavors.com/wp-content/uploads/2014/10/california-roll-3-FP.jpg\",\n    \"procesoPreparacion\": \"Paso 1 Forrar la esterilla con papel film. Colocar el alga nori sobre la esterilla y cubrirla con shari (arroz para sushi). Paso 2 Espolvorear a gusto con las semillas y dar vuelta el nori para que quede el arroz sobre la esterilla. Paso 3 Distribuir sobre el centro del alga un poco de mayonesa y 1 kanikama. Paso 4 Cortar la palta en rodajas finas y el pepino en tiras. Colocar sobre el kanikama y enrollar, con la esterilla para darle forma apretar bien pero no en exceso. Paso 5 Cortar cada rollo en 8 bocados, repetir con el resto de los ingredientes (salen 2 rollos por alga). Servirlos con salsa de soja y wasabi. \",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=3WG_IGEMoYE\",\n    \"tipoReceta\": \"PLATO_FUERTE\"\n    },\n    {\n    \"id\": \"7e061964-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Flan\",\n    \"descripcion\": \"El flan es un postre elaborado con una natilla, teniendo como ingredientes principales huevos enteros, leche y azúcar, que luego es refrigerado para obtener una textura cremosa y gelatinosa.\",\n    \"fotoPlato\": \"https://www.cocinaabuenashoras.com/flan-sin-horno.html\",\n    \"procesoPreparacion\":\"Pre calienta el horno a 350°F y ten a mano el molde que usarás para el baño de maría. Coloca el azúcar para el caramelo en un sartén a fuego medio con las 2 cucharadas de agua hasta que se derrita en forma homogénea.\",\n    \"videoPreparacion\":\"https://www.youtube.com/watch?v=WfDpQBkCUXo\",\n    \"tipoReceta\": \"POSTRE\"\n     }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"{{receta_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una receta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac126660\",\n    \"nombre\": \"California roll\",\n    \"descripcion\": \"El California roll es un maki-sushi, una clase de sushi, en ocasiones realizado de adentro hacia afuera uramaki (arroz por fuera y los ingredientes dentro), conteniendo pepino, palito de cangrejo, huevas de gambas, mayonesa y aguacate. En ciertas veces, se sustituye el palito de cangrejo por ensalada de cangrejo, y a veces fuera de la capa de arroz (uramaki) y rebozado con semillas de sésamo o tobiko. Otras preparaciones incluyen zanahoria en el lugar del pepino o nori. En Filipinas, se agrega una rodaja de mango.\",\n    \"fotoPlato\": \"https://www.196flavors.com/wp-content/uploads/2014/10/california-roll-3-FP.jpg\",\n    \"procesoPreparacion\": \"Paso 1 Forrar la esterilla con papel film. Colocar el alga nori sobre la esterilla y cubrirla con shari (arroz para sushi). Paso 2 Espolvorear a gusto con las semillas y dar vuelta el nori para que quede el arroz sobre la esterilla. Paso 3 Distribuir sobre el centro del alga un poco de mayonesa y 1 kanikama. Paso 4 Cortar la palta en rodajas finas y el pepino en tiras. Colocar sobre el kanikama y enrollar, con la esterilla para darle forma apretar bien pero no en exceso. Paso 5 Cortar cada rollo en 8 bocados, repetir con el resto de los ingredientes (salen 2 rollos por alga). Servirlos con salsa de soja y wasabi. \",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=3WG_IGEMoYE\",\n    \"tipoReceta\": \"PLATO_FUERTE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con el ID dado no fue encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una receta invalida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La receta con el ID dado no fue encontrada\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n   \"nombre\": \"Receta de galletas\",\n   \"descripcion\": \"Después de aprender a hacer galletas con esta receta no vas a volver a bajar a comprarlas nunca. Para esta receta de galletas solo necesitas tres ingredientes y media hora de tu tiempo.\",\n   \"fotoPlato\": \"https://www.google.com/imgres?imgurl=https%3A%2F%2Fs1.eestatic.com%2F2020%2F04%2F16%2Fcocinillas%2Frecetas%2Fpostres%2Freposteria-galletas-postres_482962222_150389308_1706x960.jpg&imgrefurl=https%3A%2F%2Fwww.elespanol.com%2Fcocinillas%2Frecetas%2Fpostres%2F20200416%2Freceta-galletas-nunca-hecho%2F1001914858500_30.html&tbnid=KVBgBMc-Rx7IdM&vet=12ahUKEwiK-rSR_Jr6AhUTbjABHdLGCCcQMygBegUIARCKAg..i&docid=-TUJCaK734iMDM&w=1706&h=960&q=receta%20de%20galletas&ved=2ahUKEwiK-rSR_Jr6AhUTbjABHdLGCCcQMygBegUIARCKAg\",\n    \"procesoPreparacion\": \"1. Precalentamos el horno a 180ºC. 2. Batimos la mantequilla con el azúcar hasta obtener una mezcla con textura de crema completamente homogénea. 3. Añadimos la harina tamizada y el bicarbonato (que es opcional pero muy recomendable) cucharada a cucharada según vamos mezclándolo todo. 4. Hacemos bolas y las aplastamos para darle forma a las galletas de unos 6 cm de ancho y 3 mm de espesor. Las ponemos en papel vegetal sobre una bandeja de horno.\",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=rGCgvJwjExc\",\n    \"tipoReceta\": \"POSTRE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"{{receta_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar una receta",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{receta_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac126660\",\n    \"nombre\": \"California roll\",\n    \"descripcion\": \"El California roll es un maki-sushi, una clase de sushi, en ocasiones realizado de adentro hacia afuera uramaki (arroz por fuera y los ingredientes dentro), conteniendo pepino, palito de cangrejo, huevas de gambas, mayonesa y aguacate. En ciertas veces, se sustituye el palito de cangrejo por ensalada de cangrejo, y a veces fuera de la capa de arroz (uramaki) y rebozado con semillas de sésamo o tobiko. Otras preparaciones incluyen zanahoria en el lugar del pepino o nori. En Filipinas, se agrega una rodaja de mango.\",\n    \"fotoPlato\": \"https://www.196flavors.com/wp-content/uploads/2014/10/california-roll-3-FP.jpg\",\n    \"procesoPreparacion\": \"Paso 1 Forrar la esterilla con papel film. Colocar el alga nori sobre la esterilla y cubrirla con shari (arroz para sushi). Paso 2 Espolvorear a gusto con las semillas y dar vuelta el nori para que quede el arroz sobre la esterilla. Paso 3 Distribuir sobre el centro del alga un poco de mayonesa y 1 kanikama. Paso 4 Cortar la palta en rodajas finas y el pepino en tiras. Colocar sobre el kanikama y enrollar, con la esterilla para darle forma apretar bien pero no en exceso. Paso 5 Cortar cada rollo en 8 bocados, repetir con el resto de los ingredientes (salen 2 rollos por alga). Servirlos con salsa de soja y wasabi. \",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=3WG_IGEMoYE\",\n    \"tipoReceta\": \"PLATO_FUERTE\",\n    \"culturaGastronomica\": {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac125550\",\n        \"nombre\": \"Cultura japonesa\",\n        \"descripcion\": \"La gastronomía de Japón como cocina nacional ha evolucionado, a través de los siglos, a causa de muchos cambios políticos, sociales y de recursos, comenzando por la Edad Antigua, en la que la mayoría de la cocina estaba influenciada por la cultura china. Finalmente, la cocina cambió con el advenimiento de la Edad Media que marcó el comienzo de un abandono del elitismo con la normativa del shogunato. Al principio de la Edad Moderna tuvieron lugar grandes cambios que introdujeron en Japón la cultura occidental.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con el ID dado no fue encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n   \"nombre\": \"Receta de galletas\",\n   \"descripcion\": \"Después de aprender a hacer galletas con esta receta no vas a volver a bajar a comprarlas nunca. Para esta receta de galletas solo necesitas tres ingredientes y media hora de tu tiempo.\",\n   \"fotoPlato\": \"https://www.google.com/imgres?imgurl=https%3A%2F%2Fs1.eestatic.com%2F2020%2F04%2F16%2Fcocinillas%2Frecetas%2Fpostres%2Freposteria-galletas-postres_482962222_150389308_1706x960.jpg&imgrefurl=https%3A%2F%2Fwww.elespanol.com%2Fcocinillas%2Frecetas%2Fpostres%2F20200416%2Freceta-galletas-nunca-hecho%2F1001914858500_30.html&tbnid=KVBgBMc-Rx7IdM&vet=12ahUKEwiK-rSR_Jr6AhUTbjABHdLGCCcQMygBegUIARCKAg..i&docid=-TUJCaK734iMDM&w=1706&h=960&q=receta%20de%20galletas&ved=2ahUKEwiK-rSR_Jr6AhUTbjABHdLGCCcQMygBegUIARCKAg\",\n    \"procesoPreparacion\": \"1. Precalentamos el horno a 180ºC. 2. Batimos la mantequilla con el azúcar hasta obtener una mezcla con textura de crema completamente homogénea. 3. Añadimos la harina tamizada y el bicarbonato (que es opcional pero muy recomendable) cucharada a cucharada según vamos mezclándolo todo. 4. Hacemos bolas y las aplastamos para darle forma a las galletas de unos 6 cm de ancho y 3 mm de espesor. Las ponemos en papel vegetal sobre una bandeja de horno.\",\n    \"videoPreparacion\": \"https://www.youtube.com/watch?v=rGCgvJwjExc\",\n    \"tipoReceta\": \"POSTRE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar una receta invalida",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La receta con el ID dado no fue encontrada\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/{{receta_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"{{receta_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una receta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/{{receta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"{{receta_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La receta con el ID dado no fue encontrada\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"recetas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una receta invalida",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recetas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recetas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"La receta con el ID dado no fue encontrada\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
