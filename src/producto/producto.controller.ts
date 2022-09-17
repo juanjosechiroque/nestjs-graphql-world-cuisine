@@ -8,34 +8,35 @@ import { ProductoEntity } from './producto.entity';
 import { ProductoService } from './producto.service';
 import { Role } from "../user/role.enum";
 import { HasRoles } from "../user/roles.decorator";
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
-@UseGuards(JwtAuthGuard)
 @Controller('productos')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(BusinessErrorsInterceptor)
 export class ProductoController {
     constructor(private readonly productoService: ProductoService) {}
 
   @Get()
-  @HasRoles(Role.ADMIN)
+  @HasRoles(Role.ADMIN,Role.READER)
   async findAll() {
     return await this.productoService.findAll();
   }
 
   @Get(':productoCodigo')
-  @HasRoles(Role.ADMIN)
+  @HasRoles(Role.ADMIN,Role.READER)
   async findOne(@Param('productoCodigo') productoCodigo: string) {
     return await this.productoService.findOne(productoCodigo);
   }
 
   @Post()
-  @HasRoles(Role.ADMIN)
+  @HasRoles(Role.ADMIN, Role.UPRODUCTO)
   async create(@Body() productoDto: ProductoDto) {
     const producto: ProductoEntity = plainToInstance(ProductoEntity, productoDto);
     return await this.productoService.create(producto);
   }
 
   @Put(':productoCodigo')
-  @HasRoles(Role.ADMIN)
+  @HasRoles(Role.ADMIN, Role.UPRODUCTO)
   async update(@Param('productoCodigo') productoCodigo: string, @Body() productoDto: ProductoDto) {
     const producto: ProductoEntity = plainToInstance(ProductoEntity, productoDto);
     return await this.productoService.update(productoCodigo, producto);
