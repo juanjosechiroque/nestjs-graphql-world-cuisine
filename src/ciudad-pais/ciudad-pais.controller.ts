@@ -8,9 +8,10 @@ import { BusinessErrorsInterceptor } from '../shared/interceptors/business-error
 import { CiudadPaisService } from './ciudad-pais.service';
 import { Role } from "../user/role.enum";
 import { HasRoles } from "../user/roles.decorator";
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
-@UseGuards(JwtAuthGuard)
 @Controller('ciudades')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CiudadPaisController {
     constructor(private readonly ciudadPaisService: CiudadPaisService){}
@@ -22,13 +23,13 @@ export class CiudadPaisController {
     }
 
     @Get(':ciudadCodigo/paises/:paisCodigo')
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMIN,Role.READER)
     async findPaisByCiudadIdPaisId(@Param('ciudadCodigo') ciudadCodigo: string, @Param('paisCodigo') paisCodigo: string){
         return await this.ciudadPaisService.findPaisByCiudadIdPaisId(ciudadCodigo, paisCodigo);
     }
 
     @Get(':ciudadCodigo/paises')
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMIN,Role.READER)
     async findPaisesByCiudadId(@Param('ciudadCodigo') ciudadCodigo: string){
         return await this.ciudadPaisService.findPaissByCiudadId(ciudadCodigo);
     }
