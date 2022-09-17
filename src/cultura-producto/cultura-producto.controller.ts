@@ -8,9 +8,10 @@ import { BusinessErrorsInterceptor } from '../shared/interceptors/business-error
 import { CulturaProductoService } from './cultura-producto.service';
 import { Role } from "../user/role.enum";
 import { HasRoles } from "../user/roles.decorator";
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
-@UseGuards(JwtAuthGuard)
 @Controller('culturasgastronomicas')
+@UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CulturaProductoController {
     constructor(private readonly culturaProductoService: CulturaProductoService){}
@@ -22,13 +23,13 @@ export class CulturaProductoController {
     }
 
     @Get(':culturaId/productos/:productoCodigo')
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMIN,Role.READER)
     async findProductoByCulturaIdProductoId(@Param('culturaId') culturaId: string, @Param('productoCodigo') productoCodigo: string){
         return await this.culturaProductoService.findProductoByCulturaIdProductoId(culturaId, productoCodigo);
     }
 
     @Get(':culturaId/productos')
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMIN,Role.READER)
     async findProductosByCulturaId(@Param('culturaId') culturaId: string){
         return await this.culturaProductoService.findProductoByCulturaId(culturaId);
     }
