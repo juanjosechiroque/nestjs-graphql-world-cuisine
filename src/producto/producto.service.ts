@@ -1,19 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductoEntity } from './producto.entity';
 import { Repository } from 'typeorm';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class ProductoService {
 
+    cacheKey: string = "productos";
+
     constructor(
         @InjectRepository(ProductoEntity)
-        private readonly productoRepository: Repository<ProductoEntity>
+        private readonly productoRepository: Repository<ProductoEntity>,
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache        
     ){}
 
     async findAll(): Promise<ProductoEntity[]> {
-        return await this.productoRepository.find();
+        const cached: ProductoEntity[] = await this.cacheManager.get<ProductoEntity[]>(this.cacheKey);
+
+        if(!cached) {
+            const productos: ProductoEntity[] = await this.productoRepository.find();
+            await this.cacheManager.set(this.cacheKey, productos);
+            return productos;
+        }
+        return cached;
+
     }
 
     async findOne(codigo: string): Promise<ProductoEntity> {

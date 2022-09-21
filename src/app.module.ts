@@ -42,8 +42,8 @@ import { AuthModule } from './auth/auth.module';
         password: 'postgres',
         database: 'cultura',
         entities: [CategoriaproductoEntity, CiudadEntity, CulturaEntity, PaisEntity, ProductoEntity, RecetaEntity, RestauranteEntity],
-        dropSchema: true,
-        synchronize: true,
+        dropSchema: false,
+        synchronize: false,
         keepConnectionAlive: true
     }),
     UserModule,
