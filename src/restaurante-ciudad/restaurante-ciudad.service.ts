@@ -1,19 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CiudadEntity } from '../ciudad/ciudad.entity';
 import { RestauranteEntity } from '../restaurante/restaurante.entity';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class RestauranteCiudadService {
+
+    cacheKey: string = "restaurante-ciudad-";
 
     constructor(
         @InjectRepository(RestauranteEntity)
         private readonly restauranteRepository: Repository<RestauranteEntity>,
      
         @InjectRepository(CiudadEntity)
-        private readonly ciudadRepository: Repository<CiudadEntity>
+        private readonly ciudadRepository: Repository<CiudadEntity>,
+
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache
     ) {}
 
     async addCiudadRestaurante(codigoRestaurante: string, codigoCiudad: string): Promise<RestauranteEntity> {
@@ -45,11 +51,20 @@ export class RestauranteCiudadService {
     }
      
     async findCiudadByRestauranteId(codigoRestaurante: string): Promise<CiudadEntity> {
-        const restaurante: RestauranteEntity = await this.restauranteRepository.findOne({where: {codigo: codigoRestaurante}, relations: ["ciudad"]});
-        if (!restaurante)
-          throw new BusinessLogicException("El restaurante con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+
+        const cached: CiudadEntity = await this.cacheManager.get<CiudadEntity>(this.cacheKey + codigoRestaurante);
+
+        if (!cached) {
+            const restaurante: RestauranteEntity = await this.restauranteRepository.findOne({where: {codigo: codigoRestaurante}, relations: ["ciudad"]});
+
+            if (!restaurante)
+                throw new BusinessLogicException("El restaurante con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+
+            await this.cacheManager.set(this.cacheKey + codigoRestaurante, restaurante.ciudad);
+            return restaurante.ciudad;
+        }
         
-        return restaurante.ciudad;
+        return cached;
     }
      
     async associateCiudadRestaurante(codigoRestaurante: string, newCiudadId: string): Promise<RestauranteEntity> {

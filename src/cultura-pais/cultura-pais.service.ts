@@ -1,19 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CulturaEntity } from '../cultura/cultura.entity';
 import { PaisEntity } from '../pais/pais.entity';
 import { Repository } from 'typeorm';
 import { BusinessLogicException, BusinessError } from '../shared/errors/business-errors';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class CulturaPaisService {
+
+    cacheKey: string = "cultura-pais-";
 
     constructor(
         @InjectRepository(CulturaEntity)
         private readonly culturaRepository: Repository<CulturaEntity>,
 
         @InjectRepository(PaisEntity)
-        private readonly paisRepository: Repository<PaisEntity>
+        private readonly paisRepository: Repository<PaisEntity>,
+
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache
     ) { }
 
     async addPaisCultura(codigoCultura: string, codigoPais: string): Promise<CulturaEntity> {
@@ -47,11 +53,18 @@ export class CulturaPaisService {
     }
 
     async findPaisesByCulturaId(codigoCultura: string): Promise<PaisEntity[]> {
-        const cultura: CulturaEntity = await this.culturaRepository.findOne({ where: { id: codigoCultura }, relations: ["paises"] });
-        if (!cultura)
-            throw new BusinessLogicException("La cultura gastronómica con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+        const cached: PaisEntity[] = await this.cacheManager.get<PaisEntity[]>(this.cacheKey + codigoCultura);
 
-        return cultura.paises;
+        if (!cached) {
+            const cultura: CulturaEntity = await this.culturaRepository.findOne({ where: { id: codigoCultura }, relations: ["paises"] });
+            if (!cultura)
+                throw new BusinessLogicException("La cultura gastronómica con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+            
+            await this.cacheManager.set(this.cacheKey + codigoCultura, cultura.paises);
+            return cultura.paises;
+        }
+
+        return cached;
     }
 
     async associatePaisesCultura(codigoCultura: string, paises: PaisEntity[]): Promise<CulturaEntity> {
@@ -89,5 +102,3 @@ export class CulturaPaisService {
     }  
 
 }
-
-

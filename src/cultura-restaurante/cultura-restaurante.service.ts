@@ -1,19 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestauranteEntity } from '../restaurante/restaurante.entity';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { CulturaEntity } from '../cultura/cultura.entity';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class CulturaRestauranteService {
+
+    cacheKey: string = "cultura-restaurante-";
 
     constructor(
         @InjectRepository(CulturaEntity)
         private readonly culturaRepository: Repository<CulturaEntity>,
 
         @InjectRepository(RestauranteEntity)
-        private readonly restauranteRepository: Repository<RestauranteEntity>
+        private readonly restauranteRepository: Repository<RestauranteEntity>,
+        
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache
 
     ) { }
 
@@ -51,12 +57,19 @@ export class CulturaRestauranteService {
     }
 
     async findRestaurantesByCulturaId(codigoCultura: string): Promise<RestauranteEntity[]> {
-        const cultura: CulturaEntity = await this.culturaRepository.findOne({ where: { id: codigoCultura }, relations: ["restaurantes"] });
-        
-        if (!cultura)
-            throw new BusinessLogicException("La cultura gastronómica con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+        const cached: RestauranteEntity[] = await this.cacheManager.get<RestauranteEntity[]>(this.cacheKey + codigoCultura);
 
-        return cultura.restaurantes;
+        if (!cached) {
+            const cultura: CulturaEntity = await this.culturaRepository.findOne({ where: { id: codigoCultura }, relations: ["restaurantes"] });
+        
+            if (!cultura)
+                throw new BusinessLogicException("La cultura gastronómica con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+
+            await this.cacheManager.set(this.cacheKey + codigoCultura, cultura.restaurantes);
+            return cultura.restaurantes;
+        }
+
+        return cached;
     }
 
     async associateRestaurantesCultura(codigoCultura: string, restaurantes: RestauranteEntity[]): Promise<CulturaEntity> {
