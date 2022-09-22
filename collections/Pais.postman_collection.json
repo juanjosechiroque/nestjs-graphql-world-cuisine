@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "db78ea2e-92fd-4bbb-8c29-f80b3e35b350",
-		"name": "País",
+		"name": "Pais",
 		"description": "Documentación para el recurso País",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22977479"
@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Peru\"\r\n}",
+					"raw": "{\r\n  \"nombre\": \"Chile\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -552,6 +552,16 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxMSwicm9sZXMiOlsiYWRtaW4iXSwiaWF0IjoxNjYzODYxNjQwfQ.m612H_xx99Eo3XSZ3WY2e9YyvZG8V63jk0D07GmBSbw",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
