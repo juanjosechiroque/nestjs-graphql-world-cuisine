@@ -6,6 +6,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { CulturaRestauranteService } from './cultura-restaurante.service';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { faker } from '@faker-js/faker';
+import { CacheModule } from '@nestjs/common';
 
 describe('CulturaRestauranteService', () => {
   let service: CulturaRestauranteService;
@@ -16,7 +17,7 @@ describe('CulturaRestauranteService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [...TypeOrmTestingConfig()],
+      imports: [...TypeOrmTestingConfig(),CacheModule.register()],
       providers: [CulturaRestauranteService],
     }).compile();
 
