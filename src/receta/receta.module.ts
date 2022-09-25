@@ -1,11 +1,11 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { RecetaService } from './receta.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RecetaEntity } from './receta.entity';
 import { RecetaController } from './receta.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([RecetaEntity])],
+  imports: [TypeOrmModule.forFeature([RecetaEntity]), CacheModule.register({ttl: 30})],
   providers: [RecetaService],
   controllers: [RecetaController]
 })
