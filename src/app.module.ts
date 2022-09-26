@@ -26,6 +26,9 @@ import { RecetaEntity } from './receta/receta.entity';
 import { RestauranteEntity } from './restaurante/restaurante.entity';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
+import { ApolloDriver } from '@nestjs/apollo';
 
 @Module({
   imports: [RestauranteModule, CiudadModule, PaisModule,
@@ -45,6 +48,10 @@ import { AuthModule } from './auth/auth.module';
         dropSchema: false,
         synchronize: false,
         keepConnectionAlive: true
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloDriver
     }),
     UserModule,
     AuthModule

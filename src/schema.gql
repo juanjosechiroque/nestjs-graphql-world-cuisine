@@ -1,0 +1,22 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CategoriaproductoEntity {
+  codigo: String!
+  nombre: String!
+  productos: [ProductoEntity!]!
+}
+
+type ProductoEntity {
+  codigo: String!
+  nombre: String!
+  descripcion: String!
+  historia: String!
+  categoriaProducto: [CategoriaproductoEntity!]!
+}
+
+type Query {
+  categoriaproductos: [CategoriaproductoEntity!]!
+  categoriaproducto(codigo: String!): CategoriaproductoEntity!
+}
