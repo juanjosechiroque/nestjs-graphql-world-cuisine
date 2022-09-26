@@ -1,18 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaisEntity } from '../pais/pais.entity';
 import { CiudadEntity } from '../ciudad/ciudad.entity';
 import { Repository } from 'typeorm';
 import { BusinessLogicException, BusinessError } from '../shared/errors/business-errors';
+import { Cache } from 'cache-manager';
+
 @Injectable()
 export class PaisCiudadService {
+
+    cacheKey: string = "pais-ciudad-";
 
     constructor(
         @InjectRepository(PaisEntity)
         private readonly paisRepository: Repository<PaisEntity>,
 
         @InjectRepository(CiudadEntity)
-        private readonly ciudadRepository: Repository<CiudadEntity>
+        private readonly ciudadRepository: Repository<CiudadEntity>,
+
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache
     ) { }
 
     async addCiudadPais(codigoPais: string, codigoCiudad: string): Promise<PaisEntity> {
@@ -46,11 +53,19 @@ export class PaisCiudadService {
     }
 
     async findCiudadesByPaisId(codigoPais: string): Promise<CiudadEntity[]> {
-        const pais: PaisEntity = await this.paisRepository.findOne({ where: { codigo: codigoPais }, relations: ["ciudades"] });
-        if (!pais)
-            throw new BusinessLogicException("El pais con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
 
-        return pais.ciudades;
+        const cached: CiudadEntity[] = await this.cacheManager.get<CiudadEntity[]>(this.cacheKey + codigoPais);
+
+        if (!cached) {
+            const pais: PaisEntity = await this.paisRepository.findOne({ where: { codigo: codigoPais }, relations: ["ciudades"] });
+            if (!pais)
+                throw new BusinessLogicException("El pais con el ID dado no fue encontrado", BusinessError.NOT_FOUND)
+            
+            await this.cacheManager.set(this.cacheKey + codigoPais, pais.ciudades);
+            return pais.ciudades;
+        }
+
+        return cached;
     }
 
     async associateCiudadesPais(codigoPais: string, ciudades: CiudadEntity[]): Promise<PaisEntity> {
