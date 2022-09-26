@@ -1,19 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CiudadEntity } from './ciudad.entity';
 import { Repository } from 'typeorm';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class CiudadService {
 
+    cacheKey: string = "ciudades";
+
     constructor(
         @InjectRepository(CiudadEntity)
-        private readonly ciudadRepository: Repository<CiudadEntity>
+        private readonly ciudadRepository: Repository<CiudadEntity>,
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache        
     ){}
 
     async findAll(): Promise<CiudadEntity[]> {
-        return await this.ciudadRepository.find();
+
+        const cached: CiudadEntity[] = await this.cacheManager.get<CiudadEntity[]>(this.cacheKey);
+
+        if(!cached) {
+            const ciudades: CiudadEntity[] = await this.ciudadRepository.find();
+            await this.cacheManager.set(this.cacheKey, ciudades);
+            return ciudades;
+        }
+        return cached;
+
     }
 
     async findOne(codigo: string): Promise<CiudadEntity> {
