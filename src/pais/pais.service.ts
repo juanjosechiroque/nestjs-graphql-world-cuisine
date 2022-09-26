@@ -1,19 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaisEntity } from './pais.entity';
 import { Repository } from 'typeorm';
 import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class PaisService {
 
+    cacheKey: string = "paises";
+
     constructor(
         @InjectRepository(PaisEntity)
-        private readonly paisRepository: Repository<PaisEntity>
+        private readonly paisRepository: Repository<PaisEntity>,
+        @Inject(CACHE_MANAGER)
+        private readonly cacheManager: Cache        
     ){}
 
     async findAll(): Promise<PaisEntity[]> {
-        return await this.paisRepository.find();
+
+        const cached: PaisEntity[] = await this.cacheManager.get<PaisEntity[]>(this.cacheKey);
+
+        if(!cached) {
+            const paises: PaisEntity[] = await this.paisRepository.find();
+            await this.cacheManager.set(this.cacheKey, paises);
+            return paises;
+        }
+        return cached;
+
     }
 
     async findOne(codigo: string): Promise<PaisEntity> {
