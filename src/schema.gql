@@ -20,3 +20,14 @@ type Query {
   categoriaproductos: [CategoriaproductoEntity!]!
   categoriaproducto(codigo: String!): CategoriaproductoEntity!
 }
+
+type Mutation {
+  createCategoriaproducto(categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
+  updateCategoriaproducto(codigo: String!, categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
+  deleteCategoriaproducto(codigo: String!): String!
+}
+
+input CategoriaproductoDto {
+  codigo: String!
+  nombre: String!
+}
