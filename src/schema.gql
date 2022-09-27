@@ -31,6 +31,8 @@ type ProductoEntity {
 type Query {
   ciudades: [CiudadEntity!]!
   ciudad(codigo: String!): CiudadEntity!
+  paiss: [PaisEntity!]!
+  pais(codigo: String!): PaisEntity!
   productos: [ProductoEntity!]!
   producto(codigo: String!): ProductoEntity!
   categoriaproductos: [CategoriaproductoEntity!]!
@@ -41,6 +43,9 @@ type Mutation {
   createCiudad(ciudad: CiudadDto!): CiudadEntity!
   updateCiudad(codigo: String!, ciudad: CiudadDto!): CiudadEntity!
   deleteCiudad(codigo: String!): String!
+  createPais(pais: PaisDto!): PaisEntity!
+  updatePais(codigo: String!, pais: PaisDto!): PaisEntity!
+  deletePais(codigo: String!): String!
   createProducto(producto: ProductoDto!): ProductoEntity!
   updateProducto(codigo: String!, producto: ProductoDto!): ProductoEntity!
   deleteProducto(codigo: String!): String!
@@ -50,6 +55,11 @@ type Mutation {
 }
 
 input CiudadDto {
+  codigo: String!
+  nombre: String!
+}
+
+input PaisDto {
   codigo: String!
   nombre: String!
 }
