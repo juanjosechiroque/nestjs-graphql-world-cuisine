@@ -14,6 +14,23 @@ type CiudadEntity {
   pais: PaisEntity!
 }
 
+type RestauranteEntity {
+  codigo: String!
+  nombre: String!
+  estrellasMichelin: Float!
+  fechaConsecusion: DateTime!
+  descripcion: String!
+  direccion: String!
+  telefono: String!
+  foto: String!
+  ciudad: [CiudadEntity!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type RecetaEntity {
   codigo: String!
   nombre: String!
@@ -47,6 +64,8 @@ type CulturaEntity {
 }
 
 type Query {
+  restaurantes: [RestauranteEntity!]!
+  restaurante(codigo: String!): RestauranteEntity!
   ciudades: [CiudadEntity!]!
   ciudad(codigo: String!): CiudadEntity!
   paiss: [PaisEntity!]!
@@ -62,6 +81,9 @@ type Query {
 }
 
 type Mutation {
+  createRestaurante(restaurante: RestauranteDto!): RestauranteEntity!
+  updateRestaurante(codigo: String!, restaurante: RestauranteDto!): RestauranteEntity!
+  deleteRestaurante(codigo: String!): String!
   createCiudad(ciudad: CiudadDto!): CiudadEntity!
   updateCiudad(codigo: String!, ciudad: CiudadDto!): CiudadEntity!
   deleteCiudad(codigo: String!): String!
@@ -80,6 +102,16 @@ type Mutation {
   createCategoriaproducto(categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
   updateCategoriaproducto(codigo: String!, categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
   deleteCategoriaproducto(codigo: String!): String!
+}
+
+input RestauranteDto {
+  nombre: String!
+  descripcion: String!
+  direccion: String!
+  telefono: String!
+  foto: String!
+  estrellasMichelin: Float!
+  fechaConsecusion: String!
 }
 
 input CiudadDto {
