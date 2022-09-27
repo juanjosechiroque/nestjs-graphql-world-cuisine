@@ -2,6 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type PaisEntity {
+  codigo: String!
+  nombre: String!
+  ciudades: [CiudadEntity!]!
+}
+
+type CiudadEntity {
+  codigo: String!
+  nombre: String!
+  pais: PaisEntity!
+}
+
 type RecetaEntity {
   codigo: String!
   nombre: String!
@@ -35,6 +47,10 @@ type CulturaEntity {
 }
 
 type Query {
+  ciudades: [CiudadEntity!]!
+  ciudad(codigo: String!): CiudadEntity!
+  paiss: [PaisEntity!]!
+  pais(codigo: String!): PaisEntity!
   culturas: [CulturaEntity!]!
   cultura(id: String!): CulturaEntity!
   recetas: [RecetaEntity!]!
@@ -46,6 +62,12 @@ type Query {
 }
 
 type Mutation {
+  createCiudad(ciudad: CiudadDto!): CiudadEntity!
+  updateCiudad(codigo: String!, ciudad: CiudadDto!): CiudadEntity!
+  deleteCiudad(codigo: String!): String!
+  createPais(pais: PaisDto!): PaisEntity!
+  updatePais(codigo: String!, pais: PaisDto!): PaisEntity!
+  deletePais(codigo: String!): String!
   createCultura(cultura: CulturaDto!): CulturaEntity!
   updateCultura(id: String!, cultura: CulturaDto!): CulturaEntity!
   deleteCultura(id: String!): String!
@@ -58,6 +80,16 @@ type Mutation {
   createCategoriaproducto(categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
   updateCategoriaproducto(codigo: String!, categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
   deleteCategoriaproducto(codigo: String!): String!
+}
+
+input CiudadDto {
+  codigo: String!
+  nombre: String!
+}
+
+input PaisDto {
+  codigo: String!
+  nombre: String!
 }
 
 input CulturaDto {
