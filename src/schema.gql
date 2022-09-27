@@ -2,6 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type RecetaEntity {
+  codigo: String!
+  nombre: String!
+  descripcion: String!
+  fotoPlato: String!
+  procesoPreparacion: String!
+  videoPreparacion: String!
+  tipoReceta: String!
+  cultura: [CulturaEntity!]!
+}
+
 type CategoriaproductoEntity {
   codigo: String!
   nombre: String!
@@ -16,7 +27,18 @@ type ProductoEntity {
   categoriaProducto: [CategoriaproductoEntity!]!
 }
 
+type CulturaEntity {
+  id: String!
+  nombre: String!
+  descripcion: String!
+  recetas: [RecetaEntity!]!
+}
+
 type Query {
+  culturas: [CulturaEntity!]!
+  cultura(id: String!): CulturaEntity!
+  recetas: [RecetaEntity!]!
+  receta(codigo: String!): RecetaEntity!
   productos: [ProductoEntity!]!
   producto(codigo: String!): ProductoEntity!
   categoriaproductos: [CategoriaproductoEntity!]!
@@ -24,12 +46,32 @@ type Query {
 }
 
 type Mutation {
+  createCultura(cultura: CulturaDto!): CulturaEntity!
+  updateCultura(id: String!, cultura: CulturaDto!): CulturaEntity!
+  deleteCultura(id: String!): String!
+  createReceta(receta: RecetaDto!): RecetaEntity!
+  updateReceta(codigo: String!, receta: RecetaDto!): RecetaEntity!
+  deleteReceta(codigo: String!): String!
   createProducto(producto: ProductoDto!): ProductoEntity!
   updateProducto(codigo: String!, producto: ProductoDto!): ProductoEntity!
   deleteProducto(codigo: String!): String!
   createCategoriaproducto(categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
   updateCategoriaproducto(codigo: String!, categoriaproducto: CategoriaproductoDto!): CategoriaproductoEntity!
   deleteCategoriaproducto(codigo: String!): String!
+}
+
+input CulturaDto {
+  nombre: String!
+  descripcion: String!
+}
+
+input RecetaDto {
+  nombre: String!
+  descripcion: String!
+  fotoPlato: String!
+  procesoPreparacion: String!
+  videoPreparacion: String!
+  tipoReceta: String!
 }
 
 input ProductoDto {
